@@ -306,52 +306,55 @@ table {
 .hero {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(900px 500px at 85% -10%, rgba(13, 115, 119, 0.38), transparent 62%),
-    radial-gradient(700px 400px at 5% 110%, rgba(40, 167, 172, 0.14), transparent 60%),
-    linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 52%, #123653 100%);
+  background: linear-gradient(145deg, #0A1B2D 0%, #0F2942 55%, #133954 100%);
   color: var(--white);
+  border-bottom: 3px solid var(--teal);
 }
 
 .hero::before {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 52px 52px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 78%);
   content: "";
-  pointer-events: none;
+  display: none;
 }
 
 .hero::after {
-  position: absolute;
-  top: -240px;
-  right: -160px;
-  width: 620px;
-  height: 620px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 80px rgba(255, 255, 255, 0.025),
-    0 0 0 160px rgba(255, 255, 255, 0.018);
   content: "";
-  pointer-events: none;
+  display: none;
 }
 
 .hero-inner {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-  gap: 52px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 48px;
   align-items: center;
-  padding: 76px 0 84px;
+  padding: 68px 0 76px;
 }
 
 .hero-copy {
   animation: rise-in 0.7s ease both;
+}
+
+.hero-institution {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 22px;
+  padding-left: 14px;
+  border-left: 3px solid var(--teal);
+}
+
+.hero-institution-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #E0F2F1;
+  letter-spacing: 0.02em;
+}
+
+.hero-course-tag {
+  font-size: 12px;
+  font-weight: 500;
+  color: #A3C5C6;
 }
 
 .badge {
@@ -379,23 +382,56 @@ table {
 }
 
 .hero h1 {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   color: var(--white);
-  font-size: clamp(50px, 7vw, 78px);
+  font-size: clamp(48px, 6.5vw, 72px);
   font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 0.98;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
 }
 
 .hero-subtitle {
-  max-width: 620px;
-  margin-bottom: 22px;
+  max-width: 640px;
+  margin-bottom: 24px;
   color: #D7E3EC;
   font-family: var(--font-head);
-  font-size: clamp(18px, 2.3vw, 24px);
-  font-weight: 600;
-  line-height: 1.35;
+  font-size: clamp(17px, 2vw, 22px);
+  font-weight: 500;
+  line-height: 1.4;
   letter-spacing: -0.01em;
+}
+
+.hero-specs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 28px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.hero-spec {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hero-spec dt {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8AD7D9;
+}
+
+.hero-spec dd {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #F0F4F8;
+  margin: 0;
+  line-height: 1.35;
 }
 
 .hero-meta {
@@ -421,7 +457,7 @@ table {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 4px;
 }
 
 .btn {
@@ -502,25 +538,17 @@ table {
 
 .schematic {
   position: relative;
-  padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 16px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.025));
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.24);
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  background: #0B2035;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
   animation: rise-in 0.8s 0.12s ease both;
 }
 
 .schematic::before {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 46px;
-  height: 46px;
-  border-top: 1px solid rgba(40, 167, 172, 0.6);
-  border-right: 1px solid rgba(40, 167, 172, 0.6);
-  border-top-right-radius: 8px;
   content: "";
-  pointer-events: none;
+  display: none;
 }
 
 .schematic-head {
@@ -2231,6 +2259,11 @@ tbody td strong {
 }
 
 @media (max-width: 760px) {
+  .hero-specs {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
   .section {
     padding: 52px 0;
   }

@@ -44,38 +44,52 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <span class="badge"><span class="badge-dot" aria-hidden="true"></span>AASTU College of Engineering · IETP 4115 · Group 3</span>
+          <div class="hero-institution">
+            <span class="hero-institution-name">Addis Ababa Science and Technology University</span>
+            <span class="hero-course-tag">College of Engineering &mdash; Integrated Engineering Team Project (IETP 4115), Group 3</span>
+          </div>
           <h1>AquaPave</h1>
           <p class="hero-subtitle">Permeable Wash-Pad Pavement for Treating and Reusing Garage Wastewater</p>
-          <div class="hero-meta">
-            <span>Addis Ababa, Ethiopia</span>
-            <span>10-member team · 7 disciplines</span>
-            <span>Bench-scale prototype · 2026/27</span>
-          </div>
+          
+          <dl class="hero-specs">
+            <div class="hero-spec">
+              <dt>Study Context</dt>
+              <dd>Addis Ababa, Ethiopia</dd>
+            </div>
+            <div class="hero-spec">
+              <dt>Engineering Team</dt>
+              <dd>10 Students across 7 Disciplines</dd>
+            </div>
+            <div class="hero-spec">
+              <dt>System Prototype</dt>
+              <dd>Bench-Scale Wash Pad (2026/27)</dd>
+            </div>
+          </dl>
+
           <div class="hero-actions">
-            <a class="btn btn--primary" href="about.html">Explore the system <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-            <a class="btn btn--ghost" href="files.html">Project report</a>
+            <a class="btn btn--primary" href="about.html">Explore System Architecture</a>
+            <a class="btn btn--ghost" href="files.html">Read Project Report</a>
           </div>
         </div>
 
-        <div class="schematic" aria-label="Illustrative cross-section of the AquaPave treatment layers">
+        <div class="schematic" aria-label="Cross-section of the AquaPave treatment layers">
           <div class="schematic-head">
-            <span class="schematic-title">System cross-section</span>
-            <span class="schematic-kicker">Gravity-fed</span>
+            <span class="schematic-title">System Cross-Section &amp; Hydraulic Profile</span>
+            <span class="schematic-kicker">Gravity-Driven</span>
           </div>
-          <div class="flow-in">Wash water inflow</div>
+          <div class="flow-in">Wash Water Inflow</div>
           <div class="layer-stack">
             <div class="layer">
               <span class="layer-swatch layer-slab" aria-hidden="true"></span>
-              <span class="layer-label">Pervious concrete slab<span class="layer-desc">15–35% voids · 2–5% slope</span></span>
+              <span class="layer-label">Pervious concrete slab<span class="layer-desc">15%–35% voids, 2%–5% slope (ACI 522R-10)</span></span>
             </div>
             <div class="layer">
               <span class="layer-swatch layer-choker" aria-hidden="true"></span>
-              <span class="layer-label">Choker + geotextile<span class="layer-desc">5–10 mm aggregate · non-woven fabric</span></span>
+              <span class="layer-label">Choker course + geotextile<span class="layer-desc">5–10 mm aggregate, non-woven membrane</span></span>
             </div>
             <div class="layer">
               <span class="layer-swatch layer-media" aria-hidden="true"></span>
-              <span class="layer-label">Adsorbent media bed<span class="layer-desc">Washed sand · charcoal · volcanic pumice</span></span>
+              <span class="layer-label">Stratified adsorbent media<span class="layer-desc">Washed sand, wood charcoal, volcanic pumice</span></span>
             </div>
             <div class="layer">
               <span class="layer-swatch layer-drain" aria-hidden="true"></span>
@@ -84,21 +98,21 @@
           </div>
           <div class="schematic-bottom">
             <div class="mini-unit">
-              <span>Oil separator</span>
+              <span>Baffled Oil Separator</span>
               <div class="oil-graphic" aria-hidden="true"></div>
             </div>
             <div class="mini-arrow" aria-hidden="true">&rarr;</div>
             <div class="mini-unit">
-              <span>Reuse tank</span>
+              <span>Reuse Tank</span>
               <div class="tank-graphic" aria-hidden="true"></div>
             </div>
             <div class="mini-arrow" aria-hidden="true">&rarr;</div>
             <div class="mini-unit">
-              <span>ESP32 node</span>
+              <span>ESP32 Node</span>
               <div class="sensor-graphic" aria-hidden="true"></div>
             </div>
           </div>
-          <p class="schematic-note">Illustrative schematic. Prototype photographs will replace this visual after Gate 4 assembly.</p>
+          <p class="schematic-note">Passive multi-barrier treatment train: physical straining, multi-media adsorption, Stokes' Law oil skimming, and telemetry logging.</p>
         </div>
       </div>
     </section>
