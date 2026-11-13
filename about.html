@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About the Project | AquaPave</title>
+  <meta name="description" content="AquaPave system architecture, treatment mechanisms, governing equations, component specifications, and non-potable reuse targets.">
+  <meta name="theme-color" content="#0F2942">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="AquaPave home">
+        <img src="assets/aastu-logo.png" alt="Addis Ababa Science and Technology University logo" width="46" height="46">
+        <span class="brand-copy">
+          <span class="brand-title">AquaPave</span>
+          <span class="brand-sub">IETP 4115 · Group 3</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About the Project</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="contributions.html">Team Contributions</a></li>
+          <li><a href="files.html">Files</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-index">Section 2 · Engineering case</div>
+        <h1>About the Project</h1>
+        <p>System architecture, treatment mechanisms, governing equations, main components, and expected outcomes.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="context-title">
+      <div class="container split split--top">
+        <div>
+          <div class="kicker">01 · Context and motivation</div>
+          <h2 class="section-title" id="context-title">Project overview and problem statement</h2>
+          <p>Between 2005 and 2025, built-up urban land in Addis Ababa expanded from <strong>42.5% to 62.6%</strong>, nearly doubling surface runoff from 0.54 million m³/day to 1.03 million m³/day. At the same time, the Addis Ababa Water and Sewerage Authority meets only about <strong>40%</strong> of the city's 1.2 million m³/day potable water demand.</p>
+          <p>Commercial garages and car-wash stations consume 100–200 L of tap water per vehicle and discharge untreated wastewater carrying motor oil (12–325 mg/L), suspended solids (186–561 mg/L TSS), turbidity (187–483 NTU), anionic surfactants (median 13 mg/L), and heavy metals (Pb = 0.53 mg/L, Zn = 1.98 mg/L) directly into roadside drains.</p>
+          <p>Because commercial soaps emulsify oil droplets, standard gravity skimming traps achieve under 30%–40% removal efficiency. Just one liter of waste oil can contaminate up to 1,000,000 liters of water, while oily sludge blocks storm channels and triggers localized urban flooding.</p>
+          <div class="tag-row">
+            <span class="tag tag--teal">Water scarcity</span>
+            <span class="tag tag--teal">Untreated discharge</span>
+            <span class="tag tag--teal">Drain blockage</span>
+            <span class="tag tag--teal">Non-potable reuse</span>
+          </div>
+        </div>
+        <div>
+          <div class="callout">
+            <h3>Central research question</h3>
+            <blockquote>How can a low-cost permeable wash-pad pavement treat garage wastewater in Addis Ababa so that it can be reused for non-potable purposes, and how can its hydraulic and water-quality performance be reliably monitored?</blockquote>
+          </div>
+          <div class="callout callout--navy">
+            <h3>Scope boundaries</h3>
+            <p><strong>In scope:</strong> a bench-scale permeable wash-pad prototype, multi-layer filter bed, baffled oil separator, reuse storage tank, ESP32 water-level and turbidity monitoring, and triplicate testing against a dense concrete control slab.</p>
+            <p><strong>Out of scope:</strong> full-scale commercial construction, potable drinking-water treatment (the system is strictly for non-potable reuse), and multi-year field durability testing.</p>
+          </div>
+          <div class="callout callout--navy">
+            <h3>SDG compliance alignment</h3>
+            <p><strong>Primary goals:</strong> SDG 6 (Clean Water and Sanitation — Targets 6.3 and 6.4), SDG 9 (Industry, Innovation and Infrastructure — Target 9.1), and SDG 11 (Sustainable Cities and Communities — Target 11.5).</p>
+            <p><strong>Supporting goals:</strong> SDG 1 (No Poverty — low-cost local materials and water savings) and SDG 7 (Affordable and Clean Energy — passive gravity treatment with no treatment pumps and a low-power sensor node).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" aria-labelledby="objectives-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">02 · Objectives and targets</div>
+          <h2 class="section-title" id="objectives-title">Specific objectives and success indicators</h2>
+          <p class="section-lead">Garages and car-wash facilities release oily, soapy, and sediment-heavy wastewater into open drains without adequate treatment. AquaPave addresses that gap through five linked objectives and quantitative verification targets.</p>
+        </div>
+        <div class="table-shell" tabindex="0" role="region" aria-label="Specific objectives, SDG targets, schedule windows, and success indicators">
+          <table>
+            <caption>Specific objectives, schedule windows, and proposed success indicators. Indicators will be confirmed with the advisor after initial laboratory trials.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Obj.</th>
+                <th scope="col">Specific objective</th>
+                <th scope="col">SDG target</th>
+                <th scope="col">Schedule window</th>
+                <th scope="col">Proposed success indicator</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1</strong></td>
+                <td><strong>Characterize wastewater:</strong> analyze baseline garage wash water (pH, turbidity, TSS, oil and grease, COD) and formulate a representative synthetic wash-water batch.</td>
+                <td>SDG 6.3</td>
+                <td>November 2026</td>
+                <td>Synthetic wash water close to published values (~190 mg/L TSS, ~190 NTU turbidity, ~30 mg/L oil and grease), plus a heavy stress-test recipe.</td>
+              </tr>
+              <tr>
+                <td><strong>2</strong></td>
+                <td><strong>Design and build the prototype:</strong> construct a scaled permeable concrete wash pad with multi-layer filter media, underdrain, oil separator, and reuse container.</td>
+                <td>SDG 6.3, 9.1, 11.5</td>
+                <td>Nov – early Dec 2026</td>
+                <td>Prototype passes a one-hour clean-water leak test and routes all applied water through the slab without edge bypass.</td>
+              </tr>
+              <tr>
+                <td><strong>3</strong></td>
+                <td><strong>Evaluate treatment efficiency:</strong> measure stage-wise pollutant removal and benchmark runoff and quality against a dense concrete control slab.</td>
+                <td>SDG 6.3</td>
+                <td>December 2026</td>
+                <td>At least 80% turbidity reduction (or clear visual improvement), zero visible effluent oil film, and substantially lower runoff than the control.</td>
+              </tr>
+              <tr>
+                <td><strong>4</strong></td>
+                <td><strong>Assess reuse potential:</strong> compare treated effluent against non-potable reuse limits and quantify daily municipal water savings.</td>
+                <td>SDG 6.3, 6.4</td>
+                <td>December 2026</td>
+                <td>Verification against non-potable car-wash limits plus estimated savings of 1,000–2,000 L/day for a 20-car/day garage at 50% recycling.</td>
+              </tr>
+              <tr>
+                <td><strong>5</strong></td>
+                <td><strong>Assess local feasibility:</strong> evaluate material cost, construction steps, clogging progression, and post-cleaning infiltration recovery.</td>
+                <td>SDG 9.1, 11.5</td>
+                <td>December 2026</td>
+                <td>Complete cost and payback analysis, clogging-ratio tracking, and post-cleaning permeability restoration percentage.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">All numerical removal and water-savings figures are experimental targets and literature benchmarks, not measured project results.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="system-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">03 · System architecture</div>
+          <h2 class="section-title" id="system-title">Proposed system and operational flow</h2>
+          <p class="section-lead">AquaPave replaces a conventional impermeable wash apron with a sequential, gravity-driven treatment train. All edges are sealed with a flexible waterproof liner to prevent wall bypass.</p>
+        </div>
+
+        <div class="pipeline" aria-label="Six-stage AquaPave treatment train">
+          <div class="pipeline-step pipeline-step--navy">
+            <small>Stage 1</small>
+            <strong>Pervious slab</strong>
+            <span>Sloped wash surface with 15%–35% voids</span>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">&rarr;</div>
+          <div class="pipeline-step">
+            <small>Stage 2</small>
+            <strong>Choker + geotextile</strong>
+            <span>Fine-solids interception and biofilm support</span>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">&rarr;</div>
+          <div class="pipeline-step">
+            <small>Stage 3</small>
+            <strong>Adsorbent media</strong>
+            <span>Sand, charcoal, and volcanic pumice</span>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">&rarr;</div>
+          <div class="pipeline-step">
+            <small>Stage 4</small>
+            <strong>Underdrain</strong>
+            <span>Slotted PVC collection pipe</span>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">&rarr;</div>
+          <div class="pipeline-step">
+            <small>Stage 5</small>
+            <strong>Oil separator</strong>
+            <span>Baffled gravity separation chamber</span>
+          </div>
+          <div class="pipeline-arrow" aria-hidden="true">&rarr;</div>
+          <div class="pipeline-step pipeline-step--navy">
+            <small>Stage 6</small>
+            <strong>Reuse and monitoring</strong>
+            <span>Storage tank and ESP32 node</span>
+          </div>
+        </div>
+
+        <div class="stage-grid">
+          <article class="stage-card" data-stage="01">
+            <span class="stage-kicker">Stage 1 · Surface</span>
+            <h3>Sloped apron and pervious concrete slab</h3>
+            <p>Wash water discharged across a 2%–5% sloped apron infiltrates through a no-fines pervious concrete slab designed to ACI 522R-10 (water-to-cement ratio 0.27–0.34, target void content 15%–35%). The surface strains coarse road grit, while alkaline cement hydration buffers pH to 8.0–9.5 and helps precipitate dissolved heavy metals as insoluble hydroxides and carbonates. Perimeter edges are sealed with a flexible waterproof liner.</p>
+            <span class="stage-tag">ACI 522R-10 · ASTM C1701</span>
+          </article>
+          <article class="stage-card" data-stage="02">
+            <span class="stage-kicker">Stage 2 · Interface</span>
+            <h3>Choker course and non-woven geotextile</h3>
+            <p>A 5–10 mm aggregate choker course stabilizes the slab above a non-woven geotextile membrane. The geotextile traps fine suspended silt and supports hydrocarbon-degrading microbial biofilms, contributing to mechanical filtration and in-situ biological treatment.</p>
+            <span class="stage-tag">TSS interception · biofilm support</span>
+          </article>
+          <article class="stage-card" data-stage="03">
+            <span class="stage-kicker">Stage 3 · Media bed</span>
+            <h3>Multi-layer sub-base adsorbent bed</h3>
+            <p>Water percolates downward through stratified beds of washed sand (mechanical sieving of fine TSS), crushed wood charcoal or activated carbon (adsorption of emulsified oils and anionic surfactants), and local volcanic pumice (cation exchange for dissolved lead and zinc).</p>
+            <span class="stage-tag">Adsorption · cation exchange</span>
+          </article>
+          <article class="stage-card" data-stage="04">
+            <span class="stage-kicker">Stage 4 · Collection</span>
+            <h3>Perforated PVC underdrain</h3>
+            <p>A slotted PVC underdrain collects filtered water from the base of the waterproofed containment tray and routes it under laminar flow toward the separation chamber. Pipe slots and end caps are sized to pass the design flow without creating a hydraulic bottleneck.</p>
+            <span class="stage-tag">Laminar collection</span>
+          </article>
+          <article class="stage-card" data-stage="05">
+            <span class="stage-kicker">Stage 5 · Separation</span>
+            <h3>Baffled gravity oil separation chamber</h3>
+            <p>The chamber is sized using Stokes' law so that residual free oil droplets can rise to the surface for skimming. Baffles slow the flow and reduce short-circuiting. The idealized design target is a minimum surface area of 0.04 m² for 100 µm droplets at a flow of 2 L/min.</p>
+            <span class="stage-tag">Stokes' law · API 421</span>
+          </article>
+          <article class="stage-card" data-stage="06">
+            <span class="stage-kicker">Stage 6 · Reuse and monitoring</span>
+            <h3>Non-potable reuse tank and ESP32 node</h3>
+            <p>Clarified effluent overflows into a reuse container for non-potable vehicle pre-rinsing or floor washing. An ESP32 microcontroller paired with water-level and turbidity sensors logs effluent clarity, tank volume, and drain time, and triggers a maintenance alert when surface pores clog.</p>
+            <span class="stage-tag">Clarity · level · clogging ratio</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" aria-labelledby="components-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">04 · Components and equations</div>
+          <h2 class="section-title" id="components-title">Main system components and governing equations</h2>
+          <p class="section-lead">The prototype combines structural pavement, chemical filtration, environmental monitoring, and low-power electronics. Performance is evaluated with standard test methods and a transparent water balance.</p>
+        </div>
+
+        <div class="table-shell" tabindex="0" role="region" aria-label="Main system components, material specifications, and engineering functions">
+          <table>
+            <caption>Main system components and their engineering functions.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Subsystem or layer</th>
+                <th scope="col">Material and technical specification</th>
+                <th scope="col">Primary engineering function</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Permeable wash surface</strong></td>
+                <td>No-fines Portland cement pervious concrete: water-to-cement ratio 0.27–0.34, 15%–35% voids, single-size coarse aggregate; modular permeable pavers as backup.</td>
+                <td>Supports structural load, eliminates surface runoff, strains coarse grit, and buffers pH to 8.0–9.5.</td>
+              </tr>
+              <tr>
+                <td><strong>Bedding and geotextile</strong></td>
+                <td>5–10 mm choker aggregate, 2–5 mm fine stone, and non-woven geotextile fabric.</td>
+                <td>Mechanical sieving of fine TSS, free oil-slick interception, and biofilm support.</td>
+              </tr>
+              <tr>
+                <td><strong>Adsorbent filter media</strong></td>
+                <td>Stratified washed sand, crushed wood charcoal or activated carbon, and volcanic pumice.</td>
+                <td>Adsorbs emulsified oils and surfactants; immobilizes dissolved lead and zinc through cation exchange.</td>
+              </tr>
+              <tr>
+                <td><strong>Containment and plumbing</strong></td>
+                <td>Sloped washing tray (2%–5%), flexible waterproof perimeter liner, and slotted PVC underdrain pipe with end caps.</td>
+                <td>Prevents edge bypass and collects percolated sub-base effluent.</td>
+              </tr>
+              <tr>
+                <td><strong>Oil separator and reuse tank</strong></td>
+                <td>Baffled gravity separation box sized for at least 0.04 m² at 100 µm droplets and 2 L/min; non-potable storage tank.</td>
+                <td>Separates residual free-phase hydrocarbons and stores clarified water for vehicle pre-rinsing.</td>
+              </tr>
+              <tr>
+                <td><strong>Smart monitoring node</strong></td>
+                <td>ESP32 microcontroller, water-level sensor, turbidity sensor, signal-conditioning circuit, and low-power or solar supply.</td>
+                <td>Continuous data acquisition, turbidity and level logging, and hydraulic clogging alert generation.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="split split--top" style="margin-top: 32px;">
+          <div>
+            <h3 style="margin-bottom: 14px;">Governing evaluation equations</h3>
+            <div class="eq-list">
+              <div class="eq">
+                <div class="eq-name">Infiltration rate<span>ASTM C1701 / C1701M</span></div>
+                <span class="eq-formula">I = V / (A<sub>slab</sub> &times; t)</span>
+              </div>
+              <div class="eq">
+                <div class="eq-name">Runoff coefficient<span>Surface water balance</span></div>
+                <span class="eq-formula">C<sub>r</sub> = V<sub>runoff</sub> / V<sub>applied</sub></span>
+              </div>
+              <div class="eq">
+                <div class="eq-name">Hardened void content<span>ASTM C1754 / C1754M</span></div>
+                <span class="eq-formula">&phi; (%) = [1 &minus; ((M<sub>dry</sub> &minus; M<sub>sub</sub>) / (&rho;<sub>w</sub> &times; V<sub>bulk</sub>))] &times; 100</span>
+              </div>
+              <div class="eq">
+                <div class="eq-name">Pollutant removal efficiency<span>Treatment performance</span></div>
+                <span class="eq-formula">&eta; (%) = [(C<sub>in</sub> &minus; C<sub>out</sub>) / C<sub>in</sub>] &times; 100</span>
+              </div>
+              <div class="eq">
+                <div class="eq-name">Clogging ratio<span>Maintenance assessment</span></div>
+                <span class="eq-formula">R<sub>c</sub> = t<sub>drain(current)</sub> / t<sub>drain(baseline)</sub></span>
+              </div>
+              <div class="eq">
+                <div class="eq-name">Oil droplet rise velocity<span>Stokes' law</span></div>
+                <span class="eq-formula">v = [g &middot; d&sup2; &middot; (&rho;<sub>w</sub> &minus; &rho;<sub>o</sub>)] / (18 &middot; &mu;)</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 style="margin-bottom: 14px;">Synthetic wash-water formulation</h3>
+            <div class="table-shell" tabindex="0" role="region" aria-label="Synthetic wash-water formulation for bench-scale testing">
+              <table>
+                <caption>Standard and stress-test dosing for repeatable bench-scale trials.</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Laboratory additive</th>
+                    <th scope="col">Standard / stress dosing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>TSS</strong></td>
+                    <td>Clean silty-clay soil and road grit</td>
+                    <td>~190 mg/L (1.9 g/10 L) · 350–500 mg/L</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Oil and grease</strong></td>
+                    <td>Motor oil (15W-40) or proxy</td>
+                    <td>~30 mg/L (0.33 mL/10 L) · 100–150 mg/L</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Surfactants</strong></td>
+                    <td>Commercial vehicle wash detergent</td>
+                    <td>~13 mg/L active (0.65 g/10 L) · 15–25 mg/L</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Heavy metals</strong></td>
+                    <td>Zinc nitrate and lead nitrate proxy</td>
+                    <td>Zn: 2.0 mg/L · Pb: 0.5 mg/L</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">The standard recipe follows published baseline values; the stress recipe is used to test the system beyond typical operating conditions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="outcomes-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">05 · Benchmarks and outcomes</div>
+          <h2 class="section-title" id="outcomes-title">Expected outcomes and non-potable reuse targets</h2>
+          <p class="section-lead">The numerical targets below are design benchmarks to be tested during the experimental phase. They are not pre-claimed results, and the comparison with reuse limits is indicative rather than a regulatory certification.</p>
+        </div>
+
+        <div class="split split--top">
+          <div>
+            <h3 style="margin-bottom: 14px;">Expected engineering outcomes</h3>
+            <div class="card card--teal-top" style="margin-bottom: 12px;">
+              <h3 style="font-size: 15px;">Hydraulic performance</h3>
+              <p>Complete elimination of edge bypass during a one-hour leak check, slab infiltration rates exceeding the dosing rate by at least five times, and substantially lower runoff than the dense concrete control slab.</p>
+            </div>
+            <div class="card card--teal-top" style="margin-bottom: 12px;">
+              <h3 style="font-size: 15px;">Pollutant removal</h3>
+              <p>At least 80% turbidity reduction, consistent with dual-stage sand/gravel and activated carbon benchmarks of roughly 90% TSS and 86% oil and grease removal, and no visible oil film in the final reuse tank.</p>
+            </div>
+            <div class="card card--teal-top" style="margin-bottom: 12px;">
+              <h3 style="font-size: 15px;">Potable water conservation</h3>
+              <p>On-site recovery capable of saving 1,000–2,000 L/day of municipal tap water for a small garage washing 20 vehicles per day at 50% recycling.</p>
+            </div>
+            <div class="card card--teal-top">
+              <h3 style="font-size: 15px;">Clogging rejuvenation</h3>
+              <p>Quantitative demonstration of surface permeability recovery after brushing or pressure-washing maintenance, tracked with the clogging ratio R<sub>c</sub>.</p>
+            </div>
+          </div>
+
+          <div>
+            <h3 style="margin-bottom: 14px;">Non-potable reuse targets</h3>
+            <div class="table-shell" tabindex="0" role="region" aria-label="Non-potable reuse targets compared with garage effluent and provisional Ethiopian standards">
+              <table>
+                <caption>Target effluent quality compared with untreated garage effluent and provisional Ethiopian discharge standards.</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Baseline garage effluent</th>
+                    <th scope="col">AquaPave reuse target</th>
+                    <th scope="col">Provisional Ethiopian standard</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>TSS</strong></td>
+                    <td>186–561 mg/L</td>
+                    <td><strong>&lt; 50 mg/L</strong></td>
+                    <td>&lt; 50 mg/L</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Turbidity</strong></td>
+                    <td>187–483 NTU</td>
+                    <td><strong>&lt; 20 NTU</strong></td>
+                    <td>Not specified</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Oil and grease</strong></td>
+                    <td>12–325 mg/L (median ~28 mg/L)</td>
+                    <td><strong>&lt; 5 mg/L</strong></td>
+                    <td>&lt; 15 mg/L</td>
+                  </tr>
+                  <tr>
+                    <td><strong>pH</strong></td>
+                    <td>6.5–8.5</td>
+                    <td><strong>6.5–8.5</strong></td>
+                    <td>6.0–9.0</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Lead and zinc</strong></td>
+                    <td>Pb 0.53 mg/L · Zn 1.98 mg/L</td>
+                    <td><strong>Pb &lt; 0.1 mg/L · Zn &lt; 1.0 mg/L</strong></td>
+                    <td>Pb &lt; 0.1 mg/L · Zn &lt; 2.0 mg/L</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Daily water savings</strong></td>
+                    <td>2,000–4,000 L/day consumed for 20 cars/day</td>
+                    <td><strong>1,000–2,000 L/day saved at 50% reuse</strong></td>
+                    <td>SDG 6.3 and 6.4 alignment</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">Treated water is intended for non-potable reuse only. Laboratory results do not constitute formal regulatory certification.</p>
+          </div>
+        </div>
+
+        <div class="cta">
+          <div>
+            <h3>Follow the build and verification process</h3>
+            <p>See the weekly execution log, milestone gates, and the documentation repository.</p>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 9px;">
+            <a class="btn btn--outline" href="contributions.html">Team Contributions</a>
+            <a class="btn btn--primary" href="files.html">Project Files <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="footer-brand" href="index.html" aria-label="AquaPave home">
+            <img src="assets/aastu-logo-white.png" alt="" width="44" height="44">
+            <div class="footer-brand-copy">
+              <strong>AquaPave</strong>
+              <span>IETP 4115 · Group 3</span>
+            </div>
+          </a>
+          <p>A bench-scale permeable wash-pad pavement for treating and reusing garage wastewater in Addis Ababa. Developed across seven engineering disciplines at AASTU.</p>
+          <p class="footer-meta">Project Advisor: Belay Gemeda Edeo</p>
+        </div>
+        <div class="footer-col">
+          <h4>Project</h4>
+          <a href="index.html">Home</a>
+          <a href="teams.html">Teams</a>
+          <a href="contributions.html">Team Contributions</a>
+          <a href="files.html">Files</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <h4>SDG alignment</h4>
+          <div class="sdg-chips">
+            <span class="sdg-chip sdg-chip--primary">SDG 6 · Primary</span>
+            <span class="sdg-chip sdg-chip--primary">SDG 9 · Primary</span>
+            <span class="sdg-chip sdg-chip--primary">SDG 11 · Primary</span>
+            <span class="sdg-chip">SDG 1 · Supporting</span>
+            <span class="sdg-chip">SDG 7 · Supporting</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026/27 IETP Group 3 · Addis Ababa Science and Technology University</span>
+        <span>Academic prototype. Performance targets are pending experimental verification.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaPave | Permeable Wash-Pad Pavement for Garage Wastewater</title>
+  <meta name="description" content="AquaPave is a multidisciplinary IETP 4115 project at AASTU: a permeable wash-pad pavement that treats and reuses garage wastewater on site.">
+  <meta name="theme-color" content="#0F2942">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="AquaPave home">
+        <img src="assets/aastu-logo.png" alt="Addis Ababa Science and Technology University logo" width="46" height="46">
+        <span class="brand-copy">
+          <span class="brand-title">AquaPave</span>
+          <span class="brand-sub">IETP 4115 · Group 3</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="about.html">About the Project</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li><a href="contributions.html">Team Contributions</a></li>
+          <li><a href="files.html">Files</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <span class="badge"><span class="badge-dot" aria-hidden="true"></span>AASTU College of Engineering · IETP 4115 · Group 3</span>
+          <h1>AquaPave</h1>
+          <p class="hero-subtitle">Permeable Wash-Pad Pavement for Treating and Reusing Garage Wastewater</p>
+          <div class="hero-meta">
+            <span>Addis Ababa, Ethiopia</span>
+            <span>10-member team · 7 disciplines</span>
+            <span>Bench-scale prototype · 2026/27</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="about.html">Explore the system <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+            <a class="btn btn--ghost" href="files.html">Project report</a>
+          </div>
+        </div>
+
+        <div class="schematic" aria-label="Illustrative cross-section of the AquaPave treatment layers">
+          <div class="schematic-head">
+            <span class="schematic-title">System cross-section</span>
+            <span class="schematic-kicker">Gravity-fed</span>
+          </div>
+          <div class="flow-in">Wash water inflow</div>
+          <div class="layer-stack">
+            <div class="layer">
+              <span class="layer-swatch layer-slab" aria-hidden="true"></span>
+              <span class="layer-label">Pervious concrete slab<span class="layer-desc">15–35% voids · 2–5% slope</span></span>
+            </div>
+            <div class="layer">
+              <span class="layer-swatch layer-choker" aria-hidden="true"></span>
+              <span class="layer-label">Choker + geotextile<span class="layer-desc">5–10 mm aggregate · non-woven fabric</span></span>
+            </div>
+            <div class="layer">
+              <span class="layer-swatch layer-media" aria-hidden="true"></span>
+              <span class="layer-label">Adsorbent media bed<span class="layer-desc">Washed sand · charcoal · volcanic pumice</span></span>
+            </div>
+            <div class="layer">
+              <span class="layer-swatch layer-drain" aria-hidden="true"></span>
+              <span class="layer-label">Perforated underdrain<span class="layer-desc">Slotted PVC collection pipe</span></span>
+            </div>
+          </div>
+          <div class="schematic-bottom">
+            <div class="mini-unit">
+              <span>Oil separator</span>
+              <div class="oil-graphic" aria-hidden="true"></div>
+            </div>
+            <div class="mini-arrow" aria-hidden="true">&rarr;</div>
+            <div class="mini-unit">
+              <span>Reuse tank</span>
+              <div class="tank-graphic" aria-hidden="true"></div>
+            </div>
+            <div class="mini-arrow" aria-hidden="true">&rarr;</div>
+            <div class="mini-unit">
+              <span>ESP32 node</span>
+              <div class="sensor-graphic" aria-hidden="true"></div>
+            </div>
+          </div>
+          <p class="schematic-note">Illustrative schematic. Prototype photographs will replace this visual after Gate 4 assembly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="overview-title">
+      <div class="container split">
+        <div class="schematic schematic--light" aria-label="Layered treatment section from pervious concrete to underdrain">
+          <div class="schematic-head">
+            <span class="schematic-title">Layered treatment section</span>
+            <span class="schematic-kicker">Multi-barrier</span>
+          </div>
+          <div class="flow-in">Raw wash water</div>
+          <div class="layer-stack">
+            <div class="layer">
+              <span class="layer-swatch layer-slab" aria-hidden="true"></span>
+              <span class="layer-label">Surface straining<span class="layer-desc">Coarse grit captured at the pervious slab</span></span>
+            </div>
+            <div class="layer">
+              <span class="layer-swatch layer-choker" aria-hidden="true"></span>
+              <span class="layer-label">Fine solids interception<span class="layer-desc">Choker course and non-woven geotextile</span></span>
+            </div>
+            <div class="layer">
+              <span class="layer-swatch layer-media" aria-hidden="true"></span>
+              <span class="layer-label">Adsorption and exchange<span class="layer-desc">Charcoal targets oils; pumice binds metals</span></span>
+            </div>
+            <div class="layer">
+              <span class="layer-swatch layer-drain" aria-hidden="true"></span>
+              <span class="layer-label">Collection and separation<span class="layer-desc">Underdrain feeds a baffled gravity chamber</span></span>
+            </div>
+          </div>
+          <p class="schematic-note">The treatment train is passive and gravity-driven; the only powered component is the low-power monitoring node.</p>
+        </div>
+        <div>
+          <div class="kicker">Project overview</div>
+          <h2 class="section-title" id="overview-title">About AquaPave</h2>
+          <p><strong>AquaPave</strong> is a multidisciplinary engineering project developed by ten students across seven engineering departments at Addis Ababa Science and Technology University (AASTU). The system replaces conventional, impermeable concrete garage wash aprons with an active, gravity-driven permeable pavement treatment unit.</p>
+          <p>By combining a porous pervious concrete surface, stratified sub-base adsorbent media, a baffled gravity oil separator, and an ESP32-monitored reuse tank, AquaPave treats vehicle wash wastewater on site so it can be safely recycled for non-potable operations.</p>
+          <div class="tag-row">
+            <span class="tag tag--teal">Pervious concrete</span>
+            <span class="tag tag--teal">Multi-media filtration</span>
+            <span class="tag tag--teal">Gravity oil separation</span>
+            <span class="tag tag--teal">ESP32 monitoring</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--muted" aria-labelledby="problem-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Why it matters</div>
+          <h2 class="section-title" id="problem-title">The problem and the proposed solution</h2>
+          <p class="section-lead">Addis Ababa is losing clean water and drainage capacity at the same time. AquaPave treats the wash stream before it reaches the street.</p>
+        </div>
+
+        <div class="split split--top">
+          <div class="card card--navy-top">
+            <div class="kicker">Urban challenge</div>
+            <h3>The problem</h3>
+            <p>Addis Ababa's municipal water utility meets only about <strong>40%</strong> of the city's 1.2 million m³/day potable water demand, resulting in continuous rationing since 2019. Commercial garages and car-wash stations consume <strong>100 to 200 liters</strong> of clean tap water per vehicle.</p>
+            <p>In Addis Ketema Sub-City, <strong>100% of examined garages</strong> discharge untreated effluent carrying motor oil (12–325 mg/L), suspended grit (186–561 mg/L TSS), surfactants, and heavy metals (lead and zinc) directly into open roadside storm drains. Detergents emulsify oil droplets, so conventional gravity traps achieve under 30%–40% efficiency, contributing to river pollution, clogged channels, and localized flooding.</p>
+          </div>
+          <div class="card card--teal-top">
+            <div class="kicker">Engineering response</div>
+            <h3>The proposed solution</h3>
+            <p>AquaPave consolidates surface drainage, particulate filtration, hydrocarbon adsorption, heavy-metal immobilization, and non-potable water harvesting into one compact, locally constructible wash-pad system requiring <strong>zero treatment pumps</strong>.</p>
+            <p>Coarse grit is strained at the pervious concrete surface while cement alkalinity (pH 8.0–9.5) precipitates dissolved lead and zinc. Fine silt is trapped by geotextile and sand, emulsified oils and surfactants are adsorbed onto activated charcoal, residual free oil is skimmed in a baffled Stokes' Law chamber, and an <strong>ESP32 microcontroller</strong> tracks water level, effluent turbidity, and clogging alerts.</p>
+          </div>
+        </div>
+
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat-value">100–200 L</div>
+            <div class="stat-label">Clean water consumed per single vehicle wash</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">15%–35%</div>
+            <div class="stat-label">Target void content in the pervious concrete slab (ACI 522R-10)</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">&ge; 80%</div>
+            <div class="stat-label">Target turbidity reduction, with zero visible effluent oil film</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">1,000–2,000 L</div>
+            <div class="stat-label">Daily potable water saved per small garage at 50% reuse</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="objectives-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">Semester 1 roadmap</div>
+          <h2 class="section-title" id="objectives-title">Key project objectives</h2>
+          <p class="section-lead">The general objective is to design, construct, and experimentally evaluate a permeable wash-pad pavement system capable of treating garage wastewater generated in Addis Ababa for on-site non-potable reuse.</p>
+        </div>
+
+        <div class="objective-grid">
+          <article class="objective">
+            <div class="objective-num">01</div>
+            <div>
+              <h3>Characterize garage wastewater</h3>
+              <p>Analyze baseline wash-water parameters (pH, turbidity, TSS, oil and grease, COD) and formulate a representative synthetic wash-water batch for repeatable testing.</p>
+            </div>
+          </article>
+          <article class="objective">
+            <div class="objective-num">02</div>
+            <div>
+              <h3>Design and build the prototype</h3>
+              <p>Construct a leak-tested bench-scale permeable concrete wash pad with stratified filter media, a slotted PVC underdrain, a baffled oil separator, a reuse container, and an ESP32 sensor node.</p>
+            </div>
+          </article>
+          <article class="objective">
+            <div class="objective-num">03</div>
+            <div>
+              <h3>Evaluate treatment efficiency</h3>
+              <p>Measure pollutant removal across each stage and benchmark runoff reduction and effluent clarity against a conventional dense concrete control slab.</p>
+            </div>
+          </article>
+          <article class="objective">
+            <div class="objective-num">04</div>
+            <div>
+              <h3>Assess non-potable reuse potential</h3>
+              <p>Verify treated effluent against published vehicle-washing reuse limits and quantify daily municipal water savings per garage.</p>
+            </div>
+          </article>
+          <article class="objective">
+            <div class="objective-num">05</div>
+            <div>
+              <h3>Evaluate local feasibility and maintenance</h3>
+              <p>Assess Addis Ababa construction material costs, payback, accelerated soil-clogging progression, and infiltration recovery after surface cleaning.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta">
+          <div>
+            <h3>Explore the complete engineering architecture</h3>
+            <p>See the treatment flow, governing equations, component specifications, and non-potable reuse benchmarks.</p>
+          </div>
+          <a class="btn btn--primary" href="about.html">Go to About the Project <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="footer-brand" href="index.html" aria-label="AquaPave home">
+            <img src="assets/aastu-logo-white.png" alt="" width="44" height="44">
+            <div class="footer-brand-copy">
+              <strong>AquaPave</strong>
+              <span>IETP 4115 · Group 3</span>
+            </div>
+          </a>
+          <p>A bench-scale permeable wash-pad pavement for treating and reusing garage wastewater in Addis Ababa. Developed across seven engineering disciplines at AASTU.</p>
+          <p class="footer-meta">Project Advisor: Belay Gemeda Edeo</p>
+        </div>
+        <div class="footer-col">
+          <h4>Project</h4>
+          <a href="about.html">About the Project</a>
+          <a href="teams.html">Teams</a>
+          <a href="contributions.html">Team Contributions</a>
+          <a href="files.html">Files</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <h4>SDG alignment</h4>
+          <div class="sdg-chips">
+            <span class="sdg-chip sdg-chip--primary">SDG 6 · Primary</span>
+            <span class="sdg-chip sdg-chip--primary">SDG 9 · Primary</span>
+            <span class="sdg-chip sdg-chip--primary">SDG 11 · Primary</span>
+            <span class="sdg-chip">SDG 1 · Supporting</span>
+            <span class="sdg-chip">SDG 7 · Supporting</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026/27 IETP Group 3 · Addis Ababa Science and Technology University</span>
+        <span>Academic prototype. Performance targets are pending experimental verification.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
