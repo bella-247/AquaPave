@@ -79,6 +79,7 @@
             <h3>SDG compliance alignment</h3>
             <p><strong>Primary goals:</strong> SDG 6 (Clean Water and Sanitation — Targets 6.3 and 6.4), SDG 9 (Industry, Innovation and Infrastructure — Target 9.1), and SDG 11 (Sustainable Cities and Communities — Target 11.5).</p>
             <p><strong>Supporting goals:</strong> SDG 1 (No Poverty — low-cost local materials and water savings) and SDG 7 (Affordable and Clean Energy — passive gravity treatment with no treatment pumps and a low-power sensor node).</p>
+            <p style="margin-top: 12px;"><a class="btn btn--outline btn--sm" href="#sdg-compliance" style="color: var(--white); border-color: rgba(255,255,255,0.35);">View SDG Compliance Matrix &darr;</a></p>
           </div>
         </div>
       </div>
@@ -93,7 +94,6 @@
         </div>
         <div class="table-shell" tabindex="0" role="region" aria-label="Specific objectives, SDG targets, schedule windows, and success indicators">
           <table>
-            <caption>Specific objectives, schedule windows, and proposed success indicators. Indicators will be confirmed with the advisor after initial laboratory trials.</caption>
             <thead>
               <tr>
                 <th scope="col">Obj.</th>
@@ -443,8 +443,86 @@
             <p class="table-note">Treated water is intended for non-potable reuse only. Laboratory results do not constitute formal regulatory certification.</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="cta">
+    <!-- SECTION 06: SDG COMPLIANCE MATRIX -->
+    <section class="section section--muted" id="sdg-compliance" aria-labelledby="sdg-compliance-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="kicker">06 · Compliance to Requirements</div>
+          <h2 class="section-title" id="sdg-compliance-title">Sustainable Development Goals (SDG) Compliance Matrix</h2>
+          <p class="section-lead">The AquaPave project demonstrates direct compliance with the Sustainable Development Goals designated for the 2026/27 IETP curriculum. Evaluated across primary engineering impacts and supporting socioeconomic resilience.</p>
+        </div>
+
+        <div class="table-shell" tabindex="0" role="region" aria-label="Sustainable Development Goals Compliance and Traceability Matrix">
+          <table class="sdg-matrix-table">
+            <caption>Summary matrix of Sustainable Development Goal contributions and verifiable evidence (IETP 4115).</caption>
+            <thead>
+              <tr>
+                <th scope="col" style="width: 140px;">SDG Goal</th>
+                <th scope="col" style="width: 110px;">Role</th>
+                <th scope="col">What AquaPave Does</th>
+                <th scope="col">Evidence to be Produced</th>
+                <th scope="col" style="width: 110px;">Linked Objectives</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <strong class="sdg-badge">SDG 6</strong>
+                  <span style="font-size: 11.5px; color: var(--navy); display: block;">Clean Water &amp; Sanitation</span>
+                </td>
+                <td><span class="sdg-tier-tag sdg-tier-tag--primary">Primary</span></td>
+                <td>Treats wash water on-site through a permeable concrete slab, stratified filter media, and gravity oil separation, storing treated effluent for non-potable vehicle washing.</td>
+                <td>Influent vs. effluent assays, pollutant removal efficiency (TSS, oil/grease), reuse benchmark comparison, and daily water savings (1,000–2,000 L/day).</td>
+                <td><code>Obj 1, 3, 4</code></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="sdg-badge">SDG 9</strong>
+                  <span style="font-size: 11.5px; color: var(--navy); display: block;">Industry, Innovation &amp; Infra</span>
+                </td>
+                <td><span class="sdg-tier-tag sdg-tier-tag--primary">Primary</span></td>
+                <td>Combines permeable pavement, stormwater handling, and passive filtration into one locally fabricable unit designed across seven engineering disciplines.</td>
+                <td>Leak-tested bench-scale prototype, local bill of materials, fabrication sequence, and accelerated clogging and cleaning recovery records.</td>
+                <td><code>Obj 2, 5</code></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="sdg-badge">SDG 11</strong>
+                  <span style="font-size: 11.5px; color: var(--navy); display: block;">Sustainable Cities</span>
+                </td>
+                <td><span class="sdg-tier-tag sdg-tier-tag--primary">Primary</span></td>
+                <td>Allows wash water and runoff to infiltrate at the point of origin, reducing storm sewer shock loads and preventing oily sludge discharge into Addis Ababa waterways.</td>
+                <td>Runoff coefficient compared with a dense concrete control slab and drainage time monitoring records.</td>
+                <td><code>Obj 3</code></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="sdg-badge">SDG 1</strong>
+                  <span style="font-size: 11.5px; color: var(--navy); display: block;">No Poverty</span>
+                </td>
+                <td><span class="sdg-tier-tag sdg-tier-tag--supporting">Supporting</span></td>
+                <td>Provides a low-cost unit constructed from locally sourced materials (pumice, sand, aggregate) that lowers a small garage's water bills and reduces municipal fine exposure.</td>
+                <td>Material cost breakdown, net daily municipal water expense reduction, and simple investment payback calculation.</td>
+                <td><code>Obj 4, 5</code></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong class="sdg-badge">SDG 7</strong>
+                  <span style="font-size: 11.5px; color: var(--navy); display: block;">Affordable &amp; Clean Energy</span>
+                </td>
+                <td><span class="sdg-tier-tag sdg-tier-tag--supporting">Supporting</span></td>
+                <td>Employs passive gravity-driven treatment requiring zero treatment pumps and a low-power ESP32 sensor node capable of operating on a small solar battery.</td>
+                <td>Pump count verification (zero pumps in prototype treatment train) and measured power draw of the microcontroller sensor node.</td>
+                <td><code>Obj 2, 5</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cta" style="margin-top: 36px;">
           <div>
             <h3>Follow the build and verification process</h3>
             <p>See the weekly execution log, milestone gates, and the documentation repository.</p>
@@ -481,14 +559,10 @@
           <a href="gallery.html">Gallery</a>
         </div>
         <div class="footer-col">
-          <h4>SDG alignment</h4>
-          <div class="sdg-chips">
-            <span class="sdg-chip sdg-chip--primary">SDG 6 · Primary</span>
-            <span class="sdg-chip sdg-chip--primary">SDG 9 · Primary</span>
-            <span class="sdg-chip sdg-chip--primary">SDG 11 · Primary</span>
-            <span class="sdg-chip">SDG 1 · Supporting</span>
-            <span class="sdg-chip">SDG 7 · Supporting</span>
-          </div>
+          <h4>Academic Institution</h4>
+          <p class="footer-inst">Addis Ababa Science and Technology University</p>
+          <p class="footer-inst-sub">College of Engineering<br>Integrated Engineering Team Project (IETP 4115)</p>
+          <p class="footer-inst-loc">Addis Ababa, Ethiopia · Academic Year 2026/2027</p>
         </div>
       </div>
       <div class="footer-bottom">
