@@ -35,31 +35,67 @@
     });
   }
 
-  if (new URLSearchParams(window.location.search).has("embed")) {
-    document.body.classList.add("embed-mode");
-  }
+  var isEmbed = document.documentElement.classList.contains("embed-mode");
 
-  var topButton = document.createElement("button");
-  topButton.type = "button";
-  topButton.className = "to-top";
-  topButton.setAttribute("aria-label", "Back to top");
-  topButton.innerHTML = "&#8593;";
-  document.body.appendChild(topButton);
+  if (isEmbed) {
+    var embedLinks = document.querySelectorAll("a[href]");
+    embedLinks.forEach(function (link) {
+      var href = link.getAttribute("href");
+      if (!href || href.indexOf("#") === 0 || link.target) {
+        return;
+      }
+      if (/\.html([?#]|$)/.test(href) || /\.(pdf|docx|xlsx)([?#]|$)/.test(href)) {
+        link.setAttribute("target", "_blank");
+        link.setAttribute("rel", "noopener");
+      }
+    });
 
-  var updateTopButton = function () {
-    if (window.scrollY > 640) {
-      topButton.classList.add("is-visible");
+    var reportHeight = function () {
+      var height = Math.ceil(document.documentElement.scrollHeight);
+      try {
+        window.parent.postMessage({ type: "aquapave:height", height: height }, "*");
+      } catch (error) {}
+    };
+
+    if ("ResizeObserver" in window) {
+      var heightFrame = null;
+      new ResizeObserver(function () {
+        window.cancelAnimationFrame(heightFrame);
+        heightFrame = window.requestAnimationFrame(reportHeight);
+      }).observe(document.documentElement);
     } else {
-      topButton.classList.remove("is-visible");
+      window.addEventListener("resize", reportHeight);
     }
-  };
 
-  topButton.addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+    window.addEventListener("load", reportHeight);
+    reportHeight();
 
-  window.addEventListener("scroll", updateTopButton, { passive: true });
-  updateTopButton();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(reportHeight);
+    }
+  } else {
+    var topButton = document.createElement("button");
+    topButton.type = "button";
+    topButton.className = "to-top";
+    topButton.setAttribute("aria-label", "Back to top");
+    topButton.innerHTML = "&#8593;";
+    document.body.appendChild(topButton);
+
+    var updateTopButton = function () {
+      if (window.scrollY > 640) {
+        topButton.classList.add("is-visible");
+      } else {
+        topButton.classList.remove("is-visible");
+      }
+    };
+
+    topButton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.addEventListener("scroll", updateTopButton, { passive: true });
+    updateTopButton();
+  }
 
   var anchors = document.querySelectorAll('a[href^="#"]');
   anchors.forEach(function (anchor) {
