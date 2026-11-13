@@ -1949,17 +1949,6 @@ tbody td strong {
   margin-bottom: 0;
 }
 
-.phase-note {
-  max-width: 320px;
-  padding: 12px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--white);
-  color: var(--muted);
-  font-size: 11.5px;
-  line-height: 1.5;
-}
-
 .timeline {
   position: relative;
   display: grid;
@@ -2315,16 +2304,6 @@ tbody td strong {
   line-height: 1.55;
   color: var(--muted);
   margin: 0;
-}
-
-.note-box {
-  margin-top: 26px;
-  padding: 18px 22px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--grey);
-  color: var(--muted);
-  font-size: 12.5px;
 }
 
 .gallery-grid {
@@ -2755,10 +2734,6 @@ tbody td strong {
 
   .phase-head {
     flex-direction: column;
-  }
-
-  .phase-note {
-    max-width: none;
   }
 
   .gallery-grid {
