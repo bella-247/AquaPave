@@ -1,0 +1,276 @@
+@media (max-width: 1080px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 38px;
+    padding: 64px 0 70px;
+  }
+
+  .schematic {
+    max-width: 680px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .nav a {
+    padding: 9px 8px;
+    font-size: 12.5px;
+  }
+}
+
+@media (max-width: 980px) {
+  .overview-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+
+  .header-inner {
+    min-height: 70px;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    padding: 10px 20px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+  }
+
+  .site-header.nav-open .nav {
+    display: block;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+  }
+
+  .nav a {
+    padding: 11px 12px;
+    font-size: 14px;
+  }
+
+  .split,
+  .split--wide-left {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .week-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .timeline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .timeline::before {
+    display: none;
+  }
+
+  .timeline-item {
+    padding: 18px 12px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--teal);
+    border-radius: 8px;
+    background: var(--white);
+    text-align: left;
+  }
+
+  .timeline-dot {
+    display: none;
+  }
+
+  .phase-head {
+    flex-direction: column;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .doc-entry {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 26px 28px;
+  }
+
+  .doc-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .doc-actions .btn {
+    width: auto;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-about {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-specs {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .section {
+    padding: 52px 0;
+  }
+
+  .section--tight {
+    padding: 40px 0;
+  }
+
+  .objective-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .objective:last-child {
+    grid-column: auto;
+  }
+
+  .cta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .doc-entry {
+    gap: 20px;
+    padding: 22px 20px;
+  }
+
+  .stage-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .advisor {
+    grid-template-columns: 1fr;
+  }
+
+  .advisor-photo {
+    max-width: 160px;
+  }
+
+  .schematic-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-arrow {
+    display: none;
+  }
+
+  .eq {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .eq-formula {
+    white-space: normal;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-about {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .container {
+    padding: 0 18px;
+  }
+
+  .brand-title {
+    font-size: 18px;
+  }
+
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .accordion summary {
+    padding: 13px 15px;
+  }
+
+  .summary-main span:first-child {
+    font-size: 13.5px;
+  }
+
+  .week-body {
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

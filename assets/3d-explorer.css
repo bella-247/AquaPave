@@ -1,0 +1,420 @@
+/**
+ * AquaPave 3D Structural Explorer Stylesheet
+ * Architectural CAD workbench aesthetic designed for AASTU IETP 4115.
+ * Restrained, high-contrast, technical typography, zero AI gimmicks.
+ */
+
+:root {
+  --canvas-bg: #0A1929;
+  --card-bg: #0F2438;
+  --card-border: rgba(220, 227, 234, 0.16);
+  --card-border-active: #0D7377;
+  --teal-accent: #28A7AC;
+  --teal-deep: #0D7377;
+  --text-main: #FFFFFF;
+  --text-muted: #8FA6B8;
+  --text-body: #C9D6E1;
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+body.explorer-page {
+  margin: 0;
+  padding: 0;
+  background-color: var(--canvas-bg);
+  color: var(--text-body);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14.5px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 1. Architectural CAD Title Bar */
+.explorer-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 54px;
+  background: #071524;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.topbar-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-body);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.topbar-back:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.topbar-divider {
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+}
+
+.topbar-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar-title {
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.topbar-sub {
+  color: var(--text-muted);
+  font-size: 10.5px;
+  font-family: var(--font-mono);
+}
+
+.topbar-center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stage-badge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal-accent);
+  background: rgba(40, 167, 172, 0.12);
+  border: 1px solid rgba(40, 167, 172, 0.25);
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-ctrl {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--text-body);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-ctrl:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-ctrl.is-active {
+  background: var(--teal-deep);
+  border-color: var(--teal-accent);
+  color: #FFFFFF;
+}
+
+/* 2. Fixed WebGL Canvas Container */
+#canvas-container {
+  position: fixed;
+  top: 54px;
+  right: 0;
+  width: 58%;
+  height: calc(100vh - 54px);
+  z-index: 10;
+  pointer-events: auto;
+  overflow: hidden;
+  background: #081626;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* 3. 2D Hotspot Pins Overlay */
+#pins-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hotspot-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 25;
+}
+
+.pin-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #0A1E33;
+  border: 2px solid var(--teal-accent);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.hotspot-pin:hover .pin-marker,
+.hotspot-pin.active .pin-marker {
+  background: var(--teal-deep);
+  border-color: #FFFFFF;
+  transform: scale(1.15);
+}
+
+.pin-tooltip {
+  background: #071524;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 4px;
+  padding: 4px 9px;
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* 4. Left Scrolling Narrative Specifications */
+.scrolly-main {
+  position: relative;
+  z-index: 20;
+  width: 42%;
+  min-width: 360px;
+  padding: 40px 32px 100px 36px;
+  box-sizing: border-box;
+}
+
+.narrative-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 0;
+  box-sizing: border-box;
+}
+
+.narrative-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 28px 26px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.narrative-section.is-active .narrative-card {
+  border-color: var(--card-border-active);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.card-ref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-ref {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--teal-accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card-std {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.card-title {
+  margin: 0 0 8px;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.card-summary {
+  color: var(--text-body);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+/* Numbered Pins Callout List */
+.spec-pins-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.spec-pin-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.spec-pin-item:hover,
+.spec-pin-item.is-highlighted {
+  background: rgba(13, 115, 119, 0.18);
+  border-color: var(--teal-accent);
+}
+
+.spec-pin-num {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--teal-deep);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.spec-pin-text {
+  font-size: 13px;
+  color: var(--text-body);
+  line-height: 1.4;
+}
+
+.spec-pin-text strong {
+  color: #FFFFFF;
+  display: block;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+/* Technical Metrics Grid */
+.card-metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.metric-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+}
+
+/* Scroll Direction Indicator */
+.scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--teal-accent);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  margin-top: 14px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 960px) {
+  #canvas-container {
+    position: fixed;
+    top: 54px;
+    left: 0;
+    width: 100%;
+    height: 44vh;
+  }
+
+  .scrolly-main {
+    width: 100%;
+    min-width: 0;
+    padding: calc(44vh + 16px) 16px 60px;
+  }
+
+  .narrative-section {
+    min-height: auto;
+    padding: 16px 0;
+  }
+
+  .narrative-card {
+    padding: 20px 18px;
+  }
+}

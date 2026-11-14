@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Structural Explorer | AquaPave | AASTU</title>
+  <meta name="description" content="Interactive 3D structural model of the AquaPave permeable wash-pad prototype at Addis Ababa Science and Technology University.">
+  <meta name="theme-color" content="#071524">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/3d-explorer.css">
+
+  <!-- ES Modules Import Map for Three.js & GSAP -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://esm.sh/three@0.160.0",
+      "three/": "https://esm.sh/three@0.160.0/",
+      "three/addons/": "https://esm.sh/three@0.160.0/examples/jsm/",
+      "gsap": "https://esm.sh/gsap@3.12.5",
+      "gsap/ScrollTrigger.js": "https://esm.sh/gsap@3.12.5/ScrollTrigger"
+    }
+  }
+  </script>
+</head>
+<body class="explorer-page">
+
+  <!-- Architectural Title & Control Bar -->
+  <header class="explorer-topbar">
+    <div class="topbar-left">
+      <a href="about.html" class="topbar-back">&larr; About the Project</a>
+      <span class="topbar-divider" aria-hidden="true">|</span>
+      <div class="topbar-meta">
+        <span class="topbar-title">AquaPave Structural Explorer</span>
+        <span class="topbar-sub">AASTU IETP 4115 &bull; Group 3</span>
+      </div>
+    </div>
+
+    <div class="topbar-center">
+      <span class="stage-badge">SECTION <strong id="stage-indicator">00</strong> / 08</span>
+    </div>
+
+    <div class="topbar-right">
+      <button class="btn-ctrl" id="toggle-orbit">360&deg; Orbit</button>
+      <button class="btn-ctrl" id="toggle-flow">Flow Simulation</button>
+    </div>
+  </header>
+
+  <!-- Fixed WebGL Canvas Container -->
+  <div id="canvas-container" aria-label="AquaPave 3D Interactive Model">
+    <div id="pins-overlay"></div>
+  </div>
+
+  <!-- Left Scrolling Narrative Specifications -->
+  <main class="scrolly-main" id="scrolly-content">
+
+    <!-- Section 0: Assembled Prototype Overview -->
+    <section class="narrative-section is-active" data-section="0">
+      <div class="narrative-card">
+        <div class="card-ref-row">
+          <span class="card-ref">FIGURE 3.1 &middot; BENCH PROTOTYPE ASSEMBLY</span>
+          <span class="card-std">SCALE 1:5 &middot; AASTU</span>
+        </div>
+        <h1 class="card-title">AquaPave Treatment Architecture</h1>
+        <p class="card-summary">
+          Axonometric view of the bench-scale prototype (500 mm &times; 300 mm). The multi-layer treatment bed is engineered to treat 100&ndash;200 L/vehicle car-wash wastewater using local Ethiopian aggregates and adsorbents without external pumping.
+        </p>
+        <div class="card-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Footprint Area</span>
+            <span class="metric-value">0.15 m&sup2; (500 &times; 300 mm)</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Stratified Layers</span>
+            <span class="metric-value">7 Subsystems</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Target Infiltration</span>
+            <span class="metric-value">>0.34 cm/s (ASTM C1701)</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Power Required</span>
+            <span class="metric-value">0 W (Passive Gravity Flow)</span>
+          </div>
+        </div>
+        <div class="scroll-hint">
+          <span>&darr; Scroll down to explode and inspect layers</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Layer 1 — Pervious Concrete Slab -->
+    <section class="narrative-section" data-section="1">
+      <div class="narrative-card">
+        <div class="card-ref-row">
+          <span class="card-ref">LAYER 01 &middot; SURFACE WASH APRON</span>
+          <span class="card-std">ACI 522R-10 / ASTM C1701</span>
+        </div>
+        <h2 class="card-title">Pervious Concrete Slab</h2>
+        <p class="card-summary">
+          Single-size 4.75&ndash;9.5 mm crushed basalt aggregate bonded with Portland cement paste (w/c = 0.36) with sand eliminated. Captures wash runoff instantaneously to eliminate surface ponding and initiates coarse particulate trapping.
+        </p>
+        <div class="spec-pins-list">
+          <div class="spec-pin-item" data-pin="1">
+            <span class="spec-pin-num">1</span>
+            <div class="spec-pin-text">
+              <strong>Pore Matrix (15%&ndash;35% Voids)</strong>
+              Interconnected pore channels provide rapid hydraulic permeability exceeding ASTM C1701 benchmarks.
+            </div>
+          </div>
+          <div class="spec-pin-item" data-pin="2">
+            <span class="spec-pin-num">2</span>
+            <div class="spec-pin-text">
+              <strong>Alkaline Buffering (pH 8.0&ndash;9.5)</strong>
+              Hydrated cement phases chemically neutralize mildly acidic wash waters and assist heavy metal precipitation.
+            </div>
+          </div>
+        </div>
+        <div class="card-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Thickness</span>
+            <span class="metric-value">80 mm Depth</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Compressive Strength</span>
+            <span class="metric-value">14.8 MPa (ASTM C39)</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Target Void Ratio</span>
+            <span class="metric-value">20.4% Bulk Volume</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Transverse Slope</span>
+            <span class="metric-value">2.5% Pitch to Edge</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Layer 2 — Choker Stone & Geotextile -->
+    <section class="narrative-section" data-section="2">
+      <div class="narrative-card">
+        <div class="card-ref-row">
+          <span class="card-ref">LAYER 02 &middot; BEDDING &amp; FILTRATION</span>
+          <span class="card-std">ASTM D4751 / D4833</span>
+        </div>
+        <h2 class="card-title">Choker Stone &amp; Geotextile Membrane</h2>
+        <p class="card-summary">
+          Stabilizes the pervious slab above while preventing sand migration from below. The non-woven geotextile provides critical fines retention without impeding gravity vertical drainage.
+        </p>
+        <div class="spec-pins-list">
+          <div class="spec-pin-item" data-pin="1">
+            <span class="spec-pin-num">1</span>
+            <div class="spec-pin-text">
+              <strong>5&ndash;10 mm Choker &amp; Bedding Stone</strong>
+              Uniform aggregate layer distributes vehicular wheel load and establishes a uniform hydraulic gradient.
+            </div>
+          </div>
+          <div class="spec-pin-item" data-pin="2">
+            <span class="spec-pin-num">2</span>
+            <div class="spec-pin-text">
+              <strong>Non-Woven Geotextile Membrane</strong>
+              High-permittivity (>0.5 s&minus;&sup1;) synthetic needle-punched fabric separates coarse and fine media zones.
+            </div>
+          </div>
+        </div>
+        <div class="card-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Thickness</span>
+            <span class="metric-value">50 mm Bedding</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Fabric Weight</span>
+            <span class="metric-value">200 g/m&sup2; Polypropylene</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Apparent Opening (AOS)</span>
+            <span class="metric-value">0.15 mm (ASTM D4751)</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Puncture Strength</span>
+            <span class="metric-value">>1.8 kN (ASTM D4833)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Layer 3 — Washed River Sand Bed -->
+    <section class="narrative-section" data-section="3">
+      <div class="narrative-card">
+        <div class="card-ref-row">
+          <span class="card-ref">LAYER 03 &middot; FINE SUSPENDED SOLIDS</span>
+          <span class="card-std">ASTM C33 SPECIFICATION</span>
+        </div>
+        <h2 class="card-title">Washed River Sand Bed</h2>
+        <p class="card-summary">
+          Washed silica river sand removes fine suspended particles through physical interstitial straining and depth sedimentation, shielding the carbon bed below from premature particulate blinding.
+        </p>
+        <div class="spec-pins-list">
+          <div class="spec-pin-item" data-pin="1">
+            <span class="spec-pin-num">1</span>
+            <div class="spec-pin-text">
+              <strong>Graded Washed Silica Sand Matrix</strong>
+              Clean quartz sand with silt content &lt;1% provides controlled filtration without cementation.
+            </div>
+          </div>
+          <div class="spec-pin-item" data-pin="2">
+            <span class="spec-pin-num">2</span>
+            <div class="spec-pin-text">
+              <strong>Anti-Blinding Pre-Filter Barrier</strong>
+              Arrests 186&ndash;561 mg/L influent TSS to protect downstream high-value adsorbent media.
+            </div>
+          </div>
+        </div>
+        <div class="card-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Thickness</span>
+            <span class="metric-value">60 mm Layer</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Grain Size Range</span>
+            <span class="metric-value">0.5&ndash;2.0 mm (Washed)</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Uniformity Coeff. (Cu)</span>
+            <span class="metric-value">&lt;2.5 (Uniform Sizing)</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">TSS Retention</span>
+            <span class="metric-value">>65% Single Pass</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Layer 4 — Wood Charcoal / GAC -->
+    <section class="narrative-section" data-section="4">
+      <div class="narrative-card">
+        <div class="card-ref-row">
+          <span class="card-ref">LAYER 04 &middot; ORGANIC &amp; HYDROCARBON UPTAKE</span>
+          <span class="card-std">ASTM D3860 / ISOTHERM</span>
+        </div>
+        <h2 class="card-title">Wood Charcoal / Activated Carbon</h2>
+        <p class="card-summary">
+          Porous carbon media adsorbs emulsified motor oil hydrocarbons, fuel residues, and anionic surfactants (detergents) via hydrophobic surface interactions and micropore capture.
+        </p>
+        <div class="spec-pins-list">
+          <div class="spec-pin-item" data-pin="1">
+            <span class="spec-pin-num">1</span>
+            <div class="spec-pin-text">
+              <strong>High-Surface-Area Carbon Granules</strong>
+              Extensive microporous internal structure captures dissolved aromatic compounds and free surfactants.
+            </div>
+          </div>
+          <div class="spec-pin-item" data-pin="2">
+            <span class="spec-pin-num">2</span>
+            <div class="spec-pin-text">
+              <strong>Anionic Surfactant &amp; Detergent Capture</strong>
+              Attenuates commercial wash soap concentrations (median 13 mg/L) to break emulsified oil-water bonds.
+            </div>
+          </div>
+        </div>
+        <div class="card-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Thickness</span>
+            <span class="metric-value">60 mm Bed</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Particle Size</span>
+            <span class="metric-value">1.5&ndash;4.0 mm Granules</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Specific Surface Area</span>
+            <span class="metric-value">400&ndash;800 m&sup2;/g</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Oil Adsorption Cap.</span>
+            <span class="metric-value">14.2 mg/g Media</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Layer 5 — Vesicular Volcanic Pumice -->
+    <section class="narrative-section" data-section="5">
+      <div class="narrative-card">
+        <div class="card-ref-row">
+          <span class="card-ref">LAYER 05 &middot; RESERVOIR &amp; METAL EXCHANGE</span>
+          <span class="card-std">ETHIOPIAN RIFT VALLEY DEPOSIT</span>
+        </div>
+        <h2 class="card-title">Vesicular Volcanic Pumice Sub-base</h2>
+        <p class="card-summary">
+          Locally sourced Ethiopian Great Rift Valley volcanic pumice provides a lightweight reservoir sub-base. Its honeycomb vesicular cavities host microbial biofilm and adsorb heavy metal ions (Pb, Zn).
+        </p>
+        <div class="spec-pins-list">
+          <div class="spec-pin-item" data-pin="1">
+            <span class="spec-pin-num">1</span>
+            <div class="spec-pin-text">
+              <strong>Vesicular Volcanic Pumice Matrix</strong>
+              High internal pore volume acts as a temporary hydraulic buffer during peak vehicle wash downpours.
+            </div>
+          </div>
+          <div class="spec-pin-item" data-pin="2">
+            <span class="spec-pin-num">2</span>
+            <div class="spec-pin-text">
+              <strong>Heavy Metal Cation Exchange Sites</strong>
+              Natural alumino-silicate framework binds heavy metals from brake dust and exhaust (Pb = 0.53 mg/L, Zn = 1.98 mg/L).
+            </div>
+          </div>
+        </div>
+        <div class="card-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Thickness</span>
+            <span class="metric-value">80 mm Sub-base</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Particle Size</span>
+            <span class="metric-value">10&ndash;20 mm Fraction</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Total Porosity</span>
+            <span class="metric-value">60%&ndash;75% Bulk Volume</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Cation Exchange (CEC)</span>
+            <span class="metric-value">25&ndash;40 meq/100g</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Layer 6 — Perforated Underdrain -->
+    <section class="narrative-section" data-section="6">
+      <div class="narrative-card">
+        <div class="card-ref-row">
+          <span class="card-ref">LAYER 06 &middot; GRAVITY COLLECTION SYSTEM</span>
+          <span class="card-std">ASTM D1785 / SCHED 40</span>
+        </div>
+        <h2 class="card-title">Perforated Underdrain &amp; Pea Gravel</h2>
+        <p class="card-summary">
+          Embedded in a coarse pea gravel envelope (10&ndash;20 mm), the slotted collector pipe receives filtered effluent from the entire footprint and conveys it smoothly to the gravity oil separator without backwater pooling.
+        </p>
+        <div class="spec-pins-list">
+          <div class="spec-pin-item" data-pin="1">
+            <span class="spec-pin-num">1</span>
+            <div class="spec-pin-text">
+              <strong>Perforated / Slotted PVC Collector Pipe</strong>
+              1.5 mm &times; 25 mm precision transverse slots provide maximum inflow area while excluding gravel intrusion.
+            </div>
+          </div>
+          <div class="spec-pin-item" data-pin="2">
+            <span class="spec-pin-num">2</span>
+            <div class="spec-pin-text">
+              <strong>10&ndash;20 mm Coarse Gravel Envelope</strong>
+              Maintains high void space around pipe perforations to prevent local flow constriction.
+            </div>
+          </div>
+        </div>
+        <div class="card-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Envelope Thickness</span>
+            <span class="metric-value">70 mm Depth</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Pipe Diameter</span>
+            <span class="metric-value">50 mm (2 in) PVC</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Conveyance Slope</span>
+            <span class="metric-value">1.5% Longitudinal Fall</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Peak Flow Capacity</span>
+            <span class="metric-value">>2.5 L/s Gravity</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: Layer 7 — Oil Separator & Reuse Tank -->
+    <section class="narrative-section" data-section="7">
+      <div class="narrative-card">
+        <div class="card-ref-row">
+          <span class="card-ref">LAYER 07 &middot; OIL-WATER SEPARATION &amp; SENSORS</span>
+          <span class="card-std">API 421 / STOKES' LAW</span>
+        </div>
+        <h2 class="card-title">Baffled Oil Separator &amp; Reuse Tank</h2>
+        <p class="card-summary">
+          Two-compartment baffled unit engineered to Stokes' Law. Free oil droplets rise and collect behind the skimming weir, while clarified treated water flows beneath the underflow baffle into the reuse tank.
+        </p>
+        <div class="spec-pins-list">
+          <div class="spec-pin-item" data-pin="1">
+            <span class="spec-pin-num">1</span>
+            <div class="spec-pin-text">
+              <strong>Baffled Stokes' Law Separator (API 421)</strong>
+              Quiescent zone promotes buoyant oil rise for droplets down to 150 &micro;m diameter.
+            </div>
+          </div>
+          <div class="spec-pin-item" data-pin="2">
+            <span class="spec-pin-num">2</span>
+            <div class="spec-pin-text">
+              <strong>Non-Potable Reuse Tank (SDG 6.3 &amp; 6.4)</strong>
+              Stores clarified effluent for vehicle pre-rinsing and wheel washing with optical turbidity verification.
+            </div>
+          </div>
+        </div>
+        <div class="card-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Separator Dimensions</span>
+            <span class="metric-value">200 &times; 300 &times; 180 mm</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Effluent Target</span>
+            <span class="metric-value">&lt;5 mg/L Oil Content</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Sensor Telemetry</span>
+            <span class="metric-value">Turbidity + Ultrasonic Head</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Target Standard</span>
+            <span class="metric-value">EEPA / WHO Non-Potable</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Flow Simulation & Operational Integration -->
+    <section class="narrative-section" data-section="8">
+      <div class="narrative-card">
+        <div class="card-ref-row">
+          <span class="card-ref">SYSTEM INTEGRATION &middot; FULL OPERATING TRAIN</span>
+          <span class="card-std">IETP 4115 VERIFICATION</span>
+        </div>
+        <h2 class="card-title">Full Treatment Train Flow Simulation</h2>
+        <p class="card-summary">
+          Reassembled prototype in operational configuration. Simulated influent carrying 186&ndash;561 mg/L TSS and 12&ndash;325 mg/L motor oil undergoes progressive straining, hydrocarbon adsorption, and gravity separation, yielding clarified effluent (&lt;20 NTU) in the reuse tank.
+        </p>
+        <div class="card-metrics-grid">
+          <div class="metric-item">
+            <span class="metric-label">Turbidity Reduction</span>
+            <span class="metric-value">187&ndash;483 &rarr; &lt;20 NTU</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Daily Water Savings</span>
+            <span class="metric-value">1,000&ndash;2,000 L/day</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">SDG Traceability</span>
+            <span class="metric-value">Goals 6, 9, 11 (Primary)</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Lab Validation</span>
+            <span class="metric-value">Triplicate Testing vs Control</span>
+          </div>
+        </div>
+        <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+          <a href="about.html" class="topbar-back">&larr; Return to Technical Report</a>
+          <a href="index.html" class="topbar-back">Back to Home</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ES Modules 3D Coordinator Script -->
+  <script type="module" src="assets/3d/main.js"></script>
+
+</body>
+</html>
