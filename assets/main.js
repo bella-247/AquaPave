@@ -97,6 +97,51 @@
     updateTopButton();
   }
 
+  var dropdowns = document.querySelectorAll(".nav-dropdown");
+
+  if (dropdowns.length) {
+    var closeDropdown = function (dropdown) {
+      var button = dropdown.querySelector(".nav-dropdown-toggle");
+      dropdown.classList.remove("is-open");
+      if (button) {
+        button.setAttribute("aria-expanded", "false");
+      }
+    };
+
+    dropdowns.forEach(function (dropdown) {
+      var button = dropdown.querySelector(".nav-dropdown-toggle");
+
+      if (!button) {
+        return;
+      }
+
+      button.addEventListener("click", function () {
+        var isOpen = dropdown.classList.toggle("is-open");
+        button.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      });
+
+      dropdown.addEventListener("focusout", function (event) {
+        if (!dropdown.contains(event.relatedTarget)) {
+          closeDropdown(dropdown);
+        }
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      dropdowns.forEach(function (dropdown) {
+        if (!dropdown.contains(event.target)) {
+          closeDropdown(dropdown);
+        }
+      });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        dropdowns.forEach(closeDropdown);
+      }
+    });
+  }
+
   var anchors = document.querySelectorAll('a[href^="#"]');
   anchors.forEach(function (anchor) {
     anchor.addEventListener("click", function (event) {
