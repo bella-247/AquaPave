@@ -401,7 +401,7 @@
 
 .member-pager {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   align-items: stretch;
 }
@@ -446,18 +446,6 @@
 .member-pager-next {
   align-items: flex-end;
   text-align: right;
-}
-
-.member-pager-all {
-  justify-content: center;
-  align-items: center;
-  background: var(--dept-soft) !important;
-  text-align: center;
-}
-
-.member-pager-all:hover {
-  background: var(--dept-soft) !important;
-  border-color: var(--dept) !important;
 }
 
 .member-name a {

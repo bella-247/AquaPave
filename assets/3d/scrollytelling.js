@@ -5,10 +5,13 @@
  */
 
 import * as THREE from 'three';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger.js';
 
-gsap.registerPlugin(ScrollTrigger);
+const gsap = window.gsap;
+const ScrollTrigger = window.ScrollTrigger;
+
+if (gsap && ScrollTrigger && typeof gsap.registerPlugin === 'function') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function createScrollytellingController({
   camera,
@@ -53,19 +56,46 @@ export function createScrollytellingController({
     layer.group.scale.set(1, 1, 1);
   });
 
-  // 2. Setup ScrollTriggers for each section
+  // Helper for resilient animation with or without GSAP
+  function animateTo(target, props) {
+    if (gsap && typeof gsap.to === 'function') {
+      return gsap.to(target, props);
+    }
+    const cleanProps = { ...props };
+    const onUpdate = cleanProps.onUpdate;
+    delete cleanProps.onUpdate;
+    delete cleanProps.duration;
+    delete cleanProps.ease;
+    delete cleanProps.delay;
+    Object.assign(target, cleanProps);
+    if (onUpdate) onUpdate();
+  }
+
+  // 2. Setup ScrollTriggers for each section (with IntersectionObserver fallback)
   const sections = document.querySelectorAll('.narrative-section');
   const stageCounter = document.getElementById('stage-indicator');
 
-  sections.forEach((sectionEl, sectionIndex) => {
-    ScrollTrigger.create({
-      trigger: sectionEl,
-      start: 'top 50%',
-      end: 'bottom 50%',
-      onEnter: () => activateSection(sectionIndex),
-      onEnterBack: () => activateSection(sectionIndex)
+  if (ScrollTrigger && typeof ScrollTrigger.create === 'function') {
+    sections.forEach((sectionEl, sectionIndex) => {
+      ScrollTrigger.create({
+        trigger: sectionEl,
+        start: 'top 50%',
+        end: 'bottom 50%',
+        onEnter: () => activateSection(sectionIndex),
+        onEnterBack: () => activateSection(sectionIndex)
+      });
     });
-  });
+  } else if (typeof IntersectionObserver !== 'undefined') {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = parseInt(entry.target.dataset.section, 10);
+          if (!isNaN(idx)) activateSection(idx);
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(sec => observer.observe(sec));
+  }
 
   function activateSection(index) {
     activeSectionIndex = index;
@@ -91,8 +121,8 @@ export function createScrollytellingController({
       particleSystem.setActive(false);
 
       layers.forEach((layer, idx) => {
-        gsap.to(layer.group.position, { y: assembledY[idx], duration: 1.2, ease: 'power2.out' });
-        gsap.to(layer.group.scale, { x: 1, y: 1, z: 1, duration: 0.8 });
+        animateTo(layer.group.position, { y: assembledY[idx], duration: 1.2, ease: 'power2.out' });
+        animateTo(layer.group.scale, { x: 1, y: 1, z: 1, duration: 0.8 });
         layer.setHighlight(false);
         layer.setOpacity(1.0);
       });
@@ -108,15 +138,15 @@ export function createScrollytellingController({
 
       // Separate layers into exploded positions
       layers.forEach((layer, idx) => {
-        gsap.to(layer.group.position, { y: explodedY[idx], duration: 1.0, ease: 'power2.out' });
+        animateTo(layer.group.position, { y: explodedY[idx], duration: 1.0, ease: 'power2.out' });
 
         if (idx === activeLayerIdx) {
           // Highlight active layer: scale up 1.08x, full opacity, teal glow
-          gsap.to(layer.group.scale, { x: 1.08, y: 1.08, z: 1.08, duration: 0.6 });
+          animateTo(layer.group.scale, { x: 1.08, y: 1.08, z: 1.08, duration: 0.6 });
           layer.setHighlight(true);
         } else {
           // Dim non-active layers
-          gsap.to(layer.group.scale, { x: 1, y: 1, z: 1, duration: 0.6 });
+          animateTo(layer.group.scale, { x: 1, y: 1, z: 1, duration: 0.6 });
           layer.setHighlight(false);
           layer.setOpacity(0.2);
         }
@@ -137,8 +167,8 @@ export function createScrollytellingController({
       particleSystem.setActive(true); // Turn on gravity flow simulation
 
       layers.forEach((layer, idx) => {
-        gsap.to(layer.group.position, { y: assembledY[idx], duration: 1.2, ease: 'power2.inOut' });
-        gsap.to(layer.group.scale, { x: 1, y: 1, z: 1, duration: 0.8 });
+        animateTo(layer.group.position, { y: assembledY[idx], duration: 1.2, ease: 'power2.inOut' });
+        animateTo(layer.group.scale, { x: 1, y: 1, z: 1, duration: 0.8 });
         layer.setHighlight(false);
         layer.setOpacity(1.0);
       });
@@ -151,7 +181,7 @@ export function createScrollytellingController({
   }
 
   function animateCamera(targetPos, targetLookAt, duration = 1.1) {
-    gsap.to(currentCamPos, {
+    animateTo(currentCamPos, {
       x: targetPos.x,
       y: targetPos.y,
       z: targetPos.z,
@@ -162,7 +192,7 @@ export function createScrollytellingController({
       }
     });
 
-    gsap.to(currentCamTarget, {
+    animateTo(currentCamTarget, {
       x: targetLookAt.x,
       y: targetLookAt.y,
       z: targetLookAt.z,

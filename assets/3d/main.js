@@ -26,14 +26,18 @@ export function init3DExplorer() {
   }
 
   // 1. WebGL Support Verification
-  if (!window.WebGLRenderingContext) {
-    canvasContainer.innerHTML = `
-      <div class="webgl-fallback">
-        <p>WebGL is not supported by your browser or graphics hardware.</p>
-      </div>
-    `;
-    return;
-  }
+  try {
+    const testCanvas = document.createElement('canvas');
+    const gl = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
+    if (!gl && !window.WebGLRenderingContext) {
+      canvasContainer.innerHTML = `
+        <div class="webgl-fallback" style="padding: 40px; color: #8FA6B8; font-family: monospace;">
+          <p>WebGL is not enabled in your current browser.</p>
+        </div>
+      `;
+      return;
+    }
+  } catch (e) {}
 
   // 2. Initialize Three.js Scene, Camera, Lights, and Renderer
   const sceneManager = createSceneManager(canvasContainer);
