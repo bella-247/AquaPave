@@ -355,7 +355,7 @@
   .hero-inner {
     min-height: auto;
     gap: 30px;
-    padding: 46px 0 52px;
+    padding: 46px clamp(1.5rem, 4.25vw, 3rem) 52px;
   }
 
   .hero h1 { max-width: 12ch; }
@@ -369,14 +369,14 @@
 @media (max-width: 520px) {
   .hero-inner {
     gap: 26px;
-    padding: 34px 0 42px;
+    padding: 34px 18px 42px;
   }
 
   .hero-institution { margin-bottom: 22px; }
 
   .hero h1 {
-    max-width: 10ch;
-    font-size: clamp(2.65rem, 12vw, 3.25rem);
+    max-width: 100%;
+    font-size: clamp(2.45rem, 10.5vw, 3rem);
     line-height: 0.99;
   }
 
