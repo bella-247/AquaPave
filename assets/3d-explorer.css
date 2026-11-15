@@ -5,13 +5,13 @@
  */
 
 :root {
-  --canvas-surface: #071321;
-  --hud-bg: rgba(10, 30, 51, 0.88);
-  --hud-border: rgba(220, 227, 234, 0.18);
-  --card-dark: rgba(15, 36, 56, 0.88);
-  --card-dark-active: rgba(15, 36, 56, 0.98);
-  --text-on-dark: #C9D6E1;
-  --text-muted-dark: #8FA6B8;
+  --canvas-surface: #071018;
+  --hud-bg: rgba(6, 16, 27, 0.94);
+  --hud-border: rgba(255, 255, 255, 0.18);
+  --card-dark: #0B1622;
+  --card-dark-active: #0E2032;
+  --text-on-dark: #E2E8F0;
+  --text-muted-dark: #94A3B8;
 }
 
 /* Page Base */
@@ -32,15 +32,106 @@ body.explorer-page button:focus-visible {
   outline-offset: 2px;
 }
 
-/* 1. Explorer Header Strip */
+/* Unified Dark Theme Header on 3D Explorer */
+body.explorer-page .site-header {
+  background: rgba(6, 16, 27, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body.explorer-page .header-inner {
+  min-height: 62px;
+}
+
+body.explorer-page .brand {
+  color: #FFFFFF;
+}
+
+body.explorer-page .brand img {
+  width: 38px;
+  height: 38px;
+}
+
+body.explorer-page .brand-title {
+  color: #FFFFFF;
+  font-size: 19px;
+}
+
+body.explorer-page .brand-sub {
+  color: #94A3B8;
+  font-size: 11px;
+}
+
+body.explorer-page .nav a {
+  color: #CBD5E1;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+body.explorer-page .nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+body.explorer-page .nav a[aria-current="page"] {
+  background: transparent;
+  color: #FFFFFF;
+  box-shadow: inset 0 -2px 0 #2DD4BF;
+  font-weight: 700;
+}
+
+body.explorer-page .nav-dropdown-toggle {
+  color: #CBD5E1;
+}
+
+body.explorer-page .nav-dropdown-toggle:hover {
+  color: #FFFFFF;
+}
+
+body.explorer-page .nav-dropdown-menu {
+  background: #0A1826;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+body.explorer-page .nav-dropdown-menu a {
+  color: #CBD5E1;
+}
+
+body.explorer-page .nav-dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+body.explorer-page .nav-member-name {
+  color: #FFFFFF;
+}
+
+body.explorer-page .nav-member-dept {
+  color: #94A3B8;
+}
+
+body.explorer-page .nav-toggle-bars,
+body.explorer-page .nav-toggle-bars::before,
+body.explorer-page .nav-toggle-bars::after {
+  background: #FFFFFF;
+}
+
+body.explorer-page .site-header.nav-open .nav,
+body.explorer-page .nav {
+  background: #06101B;
+}
+
+/* 1. Compact Architectural Hero Strip */
 .explorer-hero {
   position: relative;
-  background:
-    radial-gradient(760px 300px at 88% 10%, rgba(13, 115, 119, 0.28), transparent 70%),
-    linear-gradient(135deg, var(--navy-deep), var(--navy) 68%, #123653);
-  border-bottom: 2px solid rgba(13, 115, 119, 0.4);
-  padding: 36px 0 28px;
-  color: var(--white);
+  background: #081524;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 14px 0 12px;
+  color: #FFFFFF;
 }
 
 .explorer-hero-inner {
@@ -49,116 +140,160 @@ body.explorer-page button:focus-visible {
   padding: 0 24px;
 }
 
+.explorer-hero-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.explorer-hero-title-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .explorer-hero-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  color: #8AD7D9;
+  gap: 6px;
+  color: #2DD4BF;
+  font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .explorer-hero-badge::before {
   content: "";
-  width: 14px;
+  width: 10px;
   height: 2px;
-  background: var(--teal-bright);
+  background: #2DD4BF;
 }
 
 .explorer-hero h1 {
   font-family: var(--font-head);
-  font-size: clamp(28px, 3.4vw, 42px);
+  font-size: clamp(20px, 2.2vw, 26px);
   font-weight: 800;
-  letter-spacing: -0.025em;
-  color: var(--white);
-  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+  margin: 0;
   line-height: 1.15;
 }
 
-.explorer-hero p {
-  max-width: 820px;
-  font-size: 15px;
-  color: var(--text-on-dark);
-  line-height: 1.6;
-  margin: 0 0 16px;
+.explorer-hero-desc {
+  max-width: 520px;
+  font-size: 13px;
+  color: #94A3B8;
+  line-height: 1.45;
+  margin: 0;
 }
 
-/* Quick Jump Sequential Pipeline Track */
+/* High-Contrast Pipeline Navigation Track */
 .pipeline-track {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 18px;
-  padding: 8px 12px;
-  background: rgba(9, 21, 33, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 10px;
+  padding: 6px 10px;
+  background: #050D15;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 6px;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pipeline-track::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .pipeline-label {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  color: #728D9F;
+  color: #94A3B8;
   letter-spacing: 0.08em;
   white-space: nowrap;
+  padding-right: 10px;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+  flex-shrink: 0;
 }
 
 .pipeline-steps {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pipeline-steps::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .pipeline-step {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  height: 28px;
+  padding: 0 9px;
   background: transparent;
   border: 1px solid transparent;
   border-radius: 4px;
-  padding: 4px 8px;
-  color: #9AB2C2;
+  color: #E2E8F0;
   font-family: var(--font-body);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  flex-shrink: 0;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .pipeline-step .step-num {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
-  color: #5D778A;
+  color: #94A3B8;
 }
 
 .pipeline-step:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--white);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.pipeline-step:hover .step-num {
+  color: #FFFFFF;
 }
 
 .pipeline-step.is-active {
-  background: rgba(20, 184, 166, 0.18);
-  border-color: rgba(40, 167, 172, 0.45);
-  color: var(--white);
+  background: rgba(45, 212, 191, 0.18);
+  border-color: #2DD4BF;
+  color: #FFFFFF;
 }
 
 .pipeline-step.is-active .step-num {
-  color: var(--teal-bright);
+  color: #2DD4BF;
+}
+
+.pipeline-step:focus-visible {
+  outline: 2px solid #2DD4BF;
+  outline-offset: 1px;
 }
 
 .step-line {
-  width: 10px;
+  width: 6px;
   height: 1px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.18);
   flex-shrink: 0;
 }
 
@@ -299,7 +434,7 @@ body.explorer-page button:focus-visible {
 
 .spec-pin-num {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
   color: #8ED1D4;
   background: rgba(13, 115, 119, 0.28);
@@ -379,14 +514,14 @@ body.explorer-page button:focus-visible {
 .canvas-viewport {
   flex: 1;
   position: sticky;
-  top: 78px;
-  height: calc(100vh - 78px);
+  top: 62px;
+  height: calc(100vh - 62px);
   align-self: flex-start;
   overflow: hidden;
   background-color: #071018;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
-  border-left: 1px solid rgba(220, 227, 234, 0.12);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #canvas-container {
@@ -402,49 +537,50 @@ body.explorer-page button:focus-visible {
   height: 100% !important;
 }
 
-/* Unified Docked Viewport HUD Bar */
+/* Unified Docked Viewport HUD Bar (High Contrast) */
 .viewport-hud-dock {
   position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
+  top: 14px;
+  left: 14px;
+  right: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  background: rgba(9, 19, 28, 0.85);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(6, 16, 27, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 6px;
-  padding: 6px 14px;
+  padding: 7px 14px;
   z-index: 20;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 .hud-stage-segment {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   font-family: var(--font-mono);
   font-size: 11.5px;
-  color: #A3BDCC;
+  color: #E2E8F0;
 }
 
 .hud-stage-label {
-  font-size: 10px;
-  color: #6C8699;
+  font-size: 11px;
+  color: #94A3B8;
   letter-spacing: 0.08em;
 }
 
 .hud-stage-segment strong {
-  color: var(--white);
+  color: #FFFFFF;
+  font-size: 13px;
   font-weight: 700;
 }
 
 .hud-slash,
 .hud-total {
-  color: #5D778A;
+  color: #94A3B8;
 }
 
 .hud-controls-segment {
@@ -457,30 +593,40 @@ body.explorer-page button:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 4px;
-  color: #D2E4F0;
+  color: #F8FAFC;
   font-family: var(--font-body);
   font-size: 11.5px;
   font-weight: 600;
-  padding: 5px 10px;
+  padding: 5px 12px;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-.btn-hud:hover,
+.btn-hud:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+}
+
 .btn-hud.is-active,
 .btn-hud[aria-pressed="true"] {
-  background: rgba(20, 184, 166, 0.22);
-  border-color: rgba(40, 167, 172, 0.5);
-  color: var(--white);
+  background: rgba(45, 212, 191, 0.22);
+  border-color: #2DD4BF;
+  color: #2DD4BF;
+}
+
+.btn-hud:focus-visible {
+  outline: 2px solid #2DD4BF;
+  outline-offset: 1px;
 }
 
 .hud-vsep {
   width: 1px;
   height: 16px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.16);
 }
 
 /* Viewport Loading / Error State */
@@ -582,7 +728,7 @@ body.explorer-page button:focus-visible {
   font-weight: 500;
   white-space: nowrap;
   pointer-events: none;
-  box-shadow: 0 4px 16px rgba(10, 30, 51, 0.45);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
 /* 5. Responsive Styles */
@@ -625,13 +771,13 @@ body.explorer-page button:focus-visible {
   }
 
   .hud-stage-segment {
-    font-size: 10.5px;
+    font-size: 11px;
     gap: 5px;
   }
 
   .btn-hud {
     padding: 4px 8px;
-    font-size: 10.5px;
+    font-size: 11px;
   }
 
   .pipeline-track {
@@ -640,7 +786,7 @@ body.explorer-page button:focus-visible {
   }
 
   .pipeline-step {
-    font-size: 11px;
+    font-size: 11.5px;
     padding: 3px 6px;
   }
 }

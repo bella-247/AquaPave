@@ -21723,7 +21723,9 @@
         const nowActive = !sceneManager.isFreeOrbit();
         sceneManager.setFreeOrbit(nowActive);
         btnToggleOrbit.classList.toggle("is-active", nowActive);
-        btnToggleOrbit.textContent = nowActive ? "Lock Scroll Timeline" : "Free 360\xB0 Orbit";
+        btnToggleOrbit.setAttribute("aria-pressed", nowActive ? "true" : "false");
+        const label = nowActive ? "Lock Timeline" : "360\xB0 Orbit";
+        btnToggleOrbit.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg><span>${label}</span>`;
       });
     }
     const btnToggleFlow = document.getElementById("toggle-flow");
@@ -21732,6 +21734,9 @@
         const nowActive = !particleSystem.isActive();
         particleSystem.setActive(nowActive);
         btnToggleFlow.classList.toggle("is-active", nowActive);
+        btnToggleFlow.setAttribute("aria-pressed", nowActive ? "true" : "false");
+        const label = nowActive ? "Stop Flow" : "Simulate Flow";
+        btnToggleFlow.innerHTML = `<span class="ctrl-indicator" aria-hidden="true"></span><span>${label}</span>`;
       });
     }
     document.querySelectorAll("[data-jump]").forEach((btn) => {

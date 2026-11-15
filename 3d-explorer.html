@@ -89,13 +89,18 @@
   <!-- Engineering Context Header -->
   <section class="explorer-hero">
     <div class="explorer-hero-inner">
-      <div class="explorer-hero-badge">IETP 4115 &middot; Physical Prototype Investigation</div>
-      <h1>3D Structural &amp; Layer Explorer</h1>
-      <p>
-        An interactive axonometric view of the 500 &times; 300 mm multi-layer treatment test bed engineered at AASTU. Scroll to explode the cross-section and inspect each filtration, adsorption, and plumbing layer.
-      </p>
-      <div class="pipeline-track" aria-label="Layer navigation track">
-        <span class="pipeline-label">PIPELINE SEQUENCE:</span>
+      <div class="explorer-hero-head">
+        <div class="explorer-hero-title-box">
+          <div class="explorer-hero-badge">AASTU IETP 4115 &middot; Physical Prototype Investigation</div>
+          <h1>3D Structural &amp; Layer Explorer</h1>
+        </div>
+        <p class="explorer-hero-desc">
+          Axonometric view of the 500 &times; 300 mm treatment test bed. Scroll down to explode and inspect individual filtration layers.
+        </p>
+      </div>
+
+      <nav class="pipeline-track" aria-label="Layer navigation track">
+        <span class="pipeline-label">SEQUENCE:</span>
         <div class="pipeline-steps">
           <button class="pipeline-step is-active" data-jump="0" type="button"><span class="step-num">00</span><span class="step-name">Assembly</span></button>
           <span class="step-line" aria-hidden="true"></span>
@@ -115,7 +120,7 @@
           <span class="step-line" aria-hidden="true"></span>
           <button class="pipeline-step" data-jump="8" type="button"><span class="step-num">08</span><span class="step-name">Flow Test</span></button>
         </div>
-      </div>
+      </nav>
     </div>
   </section>
 

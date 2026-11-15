@@ -350,3 +350,124 @@
   }
 }
 
+/* Home hero composition */
+@media (max-width: 960px) {
+  .hero-inner {
+    min-height: auto;
+    gap: 30px;
+    padding: 46px 0 52px;
+  }
+
+  .hero h1 { max-width: 12ch; }
+
+  .hero-image-card {
+    max-width: 680px;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-inner {
+    gap: 26px;
+    padding: 34px 0 42px;
+  }
+
+  .hero-institution { margin-bottom: 22px; }
+
+  .hero h1 {
+    max-width: 10ch;
+    font-size: clamp(2.65rem, 12vw, 3.25rem);
+    line-height: 0.99;
+  }
+
+  .hero-subtitle {
+    margin-bottom: 22px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .hero-specs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 12px 0;
+  }
+
+  .hero-spec:last-child { grid-column: auto; }
+  .hero-spec dt { font-size: 9px; }
+  .hero-spec dd { font-size: 11px; }
+
+  .hero-actions {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 10px 8px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .btn--hero-3d { gap: 6px; }
+
+  .hero-image-card { aspect-ratio: 1.75 / 1; }
+
+  .hero-image-topline {
+    padding: 11px 12px;
+    font-size: 8px;
+  }
+
+  .hero-image-status { gap: 5px; }
+  .hero-image-status i { width: 5px; height: 5px; }
+
+  .hero-flow span {
+    min-height: 60px;
+    padding: 9px 8px;
+    font-size: 9px;
+  }
+
+  .hero-flow b { font-size: 8px; }
+
+  .hero-measure {
+    right: 12px;
+    bottom: 76px;
+  }
+
+  .hero-measure span { font-size: 8px; }
+  .hero-measure strong { font-size: 1.25rem; }
+}
+
+/* Full-bleed home hero photograph */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  width: auto;
+  margin: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 960px) {
+  .hero-inner {
+    min-height: calc(100svh - 70px);
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-inner {
+    min-height: calc(100svh - 70px);
+  }
+
+  .hero-image {
+    object-position: 61% center;
+  }
+}
+
