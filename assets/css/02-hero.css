@@ -33,23 +33,25 @@
 .hero-institution {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  margin-bottom: 22px;
-  padding-left: 14px;
-  border-left: 3px solid var(--teal);
+  gap: 4px;
+  margin-bottom: 20px;
+  padding: 0;
+  border: none;
 }
 
 .hero-institution-name {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #E0F2F1;
+  font-size: 13px;
+  font-weight: 600;
+  color: #E4EEF5;
   letter-spacing: 0.02em;
+  line-height: 1.35;
 }
 
 .hero-course-tag {
   font-size: 12px;
   font-weight: 500;
-  color: #A3C5C6;
+  color: #8EB7C9;
+  line-height: 1.4;
 }
 
 .badge {
@@ -99,32 +101,35 @@
 .hero-specs {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin: 0 0 28px;
-  padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
+  gap: 24px;
+  margin: 0 0 32px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  background: transparent;
 }
 
 .hero-spec {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .hero-spec dt {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #8AD7D9;
+  letter-spacing: 0.07em;
+  color: #92B7CB;
 }
 
 .hero-spec dd {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: #F0F4F8;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #FFFFFF;
   margin: 0;
   line-height: 1.35;
 }
@@ -160,24 +165,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .hero-image-card {
   position: relative;
   width: 100%;
-  max-width: 520px;
-  margin: 0;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 12px;
+  max-width: 540px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px;
   overflow: hidden;
   background: #0B2035;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
 .hero-image {
   display: block;
   width: 100%;
-  height: 330px;
+  aspect-ratio: 16 / 10;
+  height: auto;
   object-fit: cover;
   transition: transform 0.4s ease;
 }
@@ -189,23 +196,24 @@
 .hero-image-caption {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  padding: 14px 18px;
-  background: rgba(10, 26, 43, 0.95);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  gap: 2px;
+  padding: 12px 18px;
+  background: rgba(10, 26, 43, 0.94);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .hero-image-caption strong {
   font-family: var(--font-head);
-  font-size: 13.5px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--white);
+  letter-spacing: -0.01em;
 }
 
 .hero-image-caption span {
   font-size: 11.5px;
-  color: #B9CBD9;
-  line-height: 1.35;
+  color: #A5C0D1;
+  line-height: 1.4;
 }
 
 .btn {
@@ -270,6 +278,35 @@
 
 .btn--outline:hover {
   background: var(--navy);
+  color: var(--white);
+}
+
+.hero .btn--outline,
+.btn--hero-secondary {
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--white);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.hero .btn--outline:hover,
+.btn--hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: var(--white);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+.hero .btn--ghost {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: transparent;
+  color: #D2E4F0;
+}
+
+.hero .btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--white);
 }
 
