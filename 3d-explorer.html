@@ -86,49 +86,20 @@
     </div>
   </header>
 
-  <!-- Engineering Context Header -->
-  <section class="explorer-hero">
-    <div class="explorer-hero-inner">
-      <div class="explorer-hero-head">
-        <div class="explorer-hero-title-box">
-          <div class="explorer-hero-badge">AASTU IETP 4115 &middot; Physical Prototype Investigation</div>
-          <h1>3D Structural &amp; Layer Explorer</h1>
-        </div>
-        <p class="explorer-hero-desc">
-          Axonometric view of the 500 &times; 300 mm treatment test bed. Scroll down to explode and inspect individual filtration layers.
-        </p>
-      </div>
-
-      <nav class="pipeline-track" aria-label="Layer navigation track">
-        <span class="pipeline-label">SEQUENCE:</span>
-        <div class="pipeline-steps">
-          <button class="pipeline-step is-active" data-jump="0" type="button"><span class="step-num">00</span><span class="step-name">Assembly</span></button>
-          <span class="step-line" aria-hidden="true"></span>
-          <button class="pipeline-step" data-jump="1" type="button"><span class="step-num">01</span><span class="step-name">Concrete</span></button>
-          <span class="step-line" aria-hidden="true"></span>
-          <button class="pipeline-step" data-jump="2" type="button"><span class="step-num">02</span><span class="step-name">Choker &amp; Fabric</span></button>
-          <span class="step-line" aria-hidden="true"></span>
-          <button class="pipeline-step" data-jump="3" type="button"><span class="step-num">03</span><span class="step-name">Sand Bed</span></button>
-          <span class="step-line" aria-hidden="true"></span>
-          <button class="pipeline-step" data-jump="4" type="button"><span class="step-num">04</span><span class="step-name">Charcoal</span></button>
-          <span class="step-line" aria-hidden="true"></span>
-          <button class="pipeline-step" data-jump="5" type="button"><span class="step-num">05</span><span class="step-name">Pumice</span></button>
-          <span class="step-line" aria-hidden="true"></span>
-          <button class="pipeline-step" data-jump="6" type="button"><span class="step-num">06</span><span class="step-name">Underdrain</span></button>
-          <span class="step-line" aria-hidden="true"></span>
-          <button class="pipeline-step" data-jump="7" type="button"><span class="step-num">07</span><span class="step-name">Oil Separator</span></button>
-          <span class="step-line" aria-hidden="true"></span>
-          <button class="pipeline-step" data-jump="8" type="button"><span class="step-num">08</span><span class="step-name">Flow Test</span></button>
-        </div>
-      </nav>
-    </div>
-  </section>
-
   <!-- Scrollytelling Workspace -->
   <div class="explorer-layout">
 
     <!-- Left Scrolling Narrative Specifications -->
     <main class="scrolly-main" id="scrolly-content">
+
+      <!-- Engineering Context Header -->
+      <header class="explorer-intro">
+        <div class="explorer-badge">AASTU IETP 4115 &middot; Physical Prototype Investigation</div>
+        <h1 class="explorer-title">3D Structural &amp; Layer Explorer</h1>
+        <p class="explorer-desc">
+          Axonometric view of the 500 &times; 300 mm treatment test bed engineered at AASTU. Scroll down to explode and inspect each filtration, adsorption, and plumbing layer.
+        </p>
+      </header>
 
       <!-- Section 0: Assembled Prototype Overview -->
       <section class="narrative-section is-active" data-section="0">
@@ -572,7 +543,23 @@
             <strong id="stage-indicator">00</strong>
             <span class="hud-slash">/</span>
             <span class="hud-total">08</span>
+            <span class="hud-stage-sep" aria-hidden="true">&middot;</span>
+            <span class="hud-stage-title" id="stage-name-display">Assembled Model</span>
           </div>
+
+          <!-- Quick Jump Scrubber (00 to 08) -->
+          <nav class="hud-scrubber" aria-label="Layer quick jump">
+            <button class="scrubber-btn is-active" data-jump="0" type="button" title="00: Assembled Model">00</button>
+            <button class="scrubber-btn" data-jump="1" type="button" title="01: Pervious Concrete Slab">01</button>
+            <button class="scrubber-btn" data-jump="2" type="button" title="02: Choker Course &amp; Geotextile">02</button>
+            <button class="scrubber-btn" data-jump="3" type="button" title="03: Silica Sand Filter Bed">03</button>
+            <button class="scrubber-btn" data-jump="4" type="button" title="04: Activated Carbon Adsorption">04</button>
+            <button class="scrubber-btn" data-jump="5" type="button" title="05: Volcanic Pumice Mineral Bed">05</button>
+            <button class="scrubber-btn" data-jump="6" type="button" title="06: Perforated Underdrain">06</button>
+            <button class="scrubber-btn" data-jump="7" type="button" title="07: Gravity Oil Separator">07</button>
+            <button class="scrubber-btn" data-jump="8" type="button" title="08: Integrated Flow Test">08</button>
+          </nav>
+
           <div class="hud-controls-segment">
             <button class="btn-hud" id="toggle-orbit" type="button" aria-pressed="false" title="Toggle free mouse rotation">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>

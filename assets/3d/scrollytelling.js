@@ -97,12 +97,29 @@ export function createScrollytellingController({
     sections.forEach(sec => observer.observe(sec));
   }
 
+  const stageNames = [
+    'Assembled Model',
+    'Pervious Concrete Slab',
+    'Choker Course & Geotextile',
+    'Silica Sand Filter Bed',
+    'Activated Carbon Adsorption',
+    'Volcanic Pumice Mineral Bed',
+    'Perforated Underdrain',
+    'Gravity Oil Separator',
+    'Flow Simulation Test'
+  ];
+
   function activateSection(index) {
     activeSectionIndex = index;
 
     // Update Top-Bar Stage Counter
     if (stageCounter) {
       stageCounter.textContent = index < 10 ? `0${index}` : `${index}`;
+    }
+
+    const stageTitle = document.getElementById('stage-name-display');
+    if (stageTitle && stageNames[index]) {
+      stageTitle.textContent = stageNames[index];
     }
 
     // Highlight active card on left stream
@@ -114,8 +131,8 @@ export function createScrollytellingController({
       }
     });
 
-    // Highlight active pipeline track step
-    document.querySelectorAll('.pipeline-step').forEach((btn, idx) => {
+    // Highlight active scrubber button
+    document.querySelectorAll('.scrubber-btn, .pipeline-step').forEach((btn, idx) => {
       btn.classList.toggle('is-active', idx === index);
     });
 

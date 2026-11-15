@@ -125,37 +125,14 @@ body.explorer-page .nav {
   background: #06101B;
 }
 
-/* 1. Compact Architectural Hero Strip */
-.explorer-hero {
-  position: relative;
-  background: #081524;
+/* 1. Page Title and Introduction (Inside Narrative Column) */
+.explorer-intro {
+  margin-bottom: 28px;
+  padding-bottom: 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 14px 0 12px;
-  color: #FFFFFF;
 }
 
-.explorer-hero-inner {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.explorer-hero-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
-
-.explorer-hero-title-box {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.explorer-hero-badge {
+.explorer-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -165,136 +142,31 @@ body.explorer-page .nav {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
-.explorer-hero-badge::before {
+.explorer-badge::before {
   content: "";
   width: 10px;
   height: 2px;
   background: #2DD4BF;
 }
 
-.explorer-hero h1 {
+.explorer-title {
   font-family: var(--font-head);
-  font-size: clamp(20px, 2.2vw, 26px);
+  font-size: clamp(24px, 2.6vw, 32px);
   font-weight: 800;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: #FFFFFF;
-  margin: 0;
+  margin: 0 0 10px;
   line-height: 1.15;
 }
 
-.explorer-hero-desc {
-  max-width: 520px;
-  font-size: 13px;
+.explorer-desc {
+  font-size: 13.5px;
   color: #94A3B8;
-  line-height: 1.45;
+  line-height: 1.55;
   margin: 0;
-}
-
-/* High-Contrast Pipeline Navigation Track */
-.pipeline-track {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 10px;
-  background: #050D15;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.pipeline-track::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
-
-.pipeline-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  color: #94A3B8;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-  padding-right: 10px;
-  border-right: 1px solid rgba(255, 255, 255, 0.14);
-  flex-shrink: 0;
-}
-
-.pipeline-steps {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.pipeline-steps::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
-
-.pipeline-step {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 28px;
-  padding: 0 9px;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: #E2E8F0;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  white-space: nowrap;
-  flex-shrink: 0;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-
-.pipeline-step .step-num {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  color: #94A3B8;
-}
-
-.pipeline-step:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #FFFFFF;
-}
-
-.pipeline-step:hover .step-num {
-  color: #FFFFFF;
-}
-
-.pipeline-step.is-active {
-  background: rgba(45, 212, 191, 0.18);
-  border-color: #2DD4BF;
-  color: #FFFFFF;
-}
-
-.pipeline-step.is-active .step-num {
-  color: #2DD4BF;
-}
-
-.pipeline-step:focus-visible {
-  outline: 2px solid #2DD4BF;
-  outline-offset: 1px;
-}
-
-.step-line {
-  width: 6px;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.18);
-  flex-shrink: 0;
 }
 
 /* 2. Main Two-Column Scrollytelling Layout */
@@ -560,10 +432,11 @@ body.explorer-page .nav {
 .hud-stage-segment {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   font-family: var(--font-mono);
   font-size: 11.5px;
   color: #E2E8F0;
+  white-space: nowrap;
 }
 
 .hud-stage-label {
@@ -581,6 +454,70 @@ body.explorer-page .nav {
 .hud-slash,
 .hud-total {
   color: #94A3B8;
+}
+
+.hud-stage-sep {
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0 1px;
+}
+
+.hud-stage-title {
+  color: #E2E8F0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Scrubber in HUD dock */
+.hud-scrubber {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(3, 10, 18, 0.75);
+  padding: 3px 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hud-scrubber::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.scrubber-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #94A3B8;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 3px 6px;
+  cursor: pointer;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.scrubber-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.scrubber-btn.is-active {
+  background: rgba(45, 212, 191, 0.22);
+  border-color: #2DD4BF;
+  color: #2DD4BF;
+}
+
+.scrubber-btn:focus-visible {
+  outline: 2px solid #2DD4BF;
+  outline-offset: 1px;
 }
 
 .hud-controls-segment {
@@ -780,13 +717,15 @@ body.explorer-page .nav {
     font-size: 11px;
   }
 
-  .pipeline-track {
-    overflow-x: auto;
-    padding: 6px 10px;
+  .hud-scrubber {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 4px;
   }
 
-  .pipeline-step {
-    font-size: 11.5px;
-    padding: 3px 6px;
+  .scrubber-btn {
+    font-size: 11px;
+    padding: 2px 5px;
   }
 }

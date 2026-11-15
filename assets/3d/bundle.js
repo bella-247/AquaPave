@@ -21528,10 +21528,25 @@
       }, { threshold: 0.4 });
       sections.forEach((sec) => observer.observe(sec));
     }
+    const stageNames = [
+      "Assembled Model",
+      "Pervious Concrete Slab",
+      "Choker Course & Geotextile",
+      "Silica Sand Filter Bed",
+      "Activated Carbon Adsorption",
+      "Volcanic Pumice Mineral Bed",
+      "Perforated Underdrain",
+      "Gravity Oil Separator",
+      "Flow Simulation Test"
+    ];
     function activateSection(index) {
       activeSectionIndex = index;
       if (stageCounter) {
         stageCounter.textContent = index < 10 ? `0${index}` : `${index}`;
+      }
+      const stageTitle = document.getElementById("stage-name-display");
+      if (stageTitle && stageNames[index]) {
+        stageTitle.textContent = stageNames[index];
       }
       sections.forEach((sec, idx) => {
         if (idx === index) {
@@ -21540,7 +21555,7 @@
           sec.classList.remove("is-active");
         }
       });
-      document.querySelectorAll(".pipeline-step").forEach((btn, idx) => {
+      document.querySelectorAll(".scrubber-btn, .pipeline-step").forEach((btn, idx) => {
         btn.classList.toggle("is-active", idx === index);
       });
       if (index === 0) {
