@@ -631,10 +631,7 @@
   <!-- Site Navigation & Mobile Dropdown Controller -->
   <script src="assets/main.js" defer></script>
 
-  <!-- ES Modules 3D Coordinator Script -->
-  <script type="module">
-    import { init3DExplorer } from './assets/3d/main.js';
-    init3DExplorer();
-  </script>
+  <!-- Standalone 3D Coordinator Bundle (Compatible with both file:// and http://) -->
+  <script src="assets/3d/bundle.js" defer></script>
 </body>
 </html>
