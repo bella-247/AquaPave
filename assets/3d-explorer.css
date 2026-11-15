@@ -1,0 +1,731 @@
+/**
+ * AquaPave 3D Structural Explorer Stylesheet
+ * Integrates with AquaPave design tokens from assets/styles.css (assets/css/01-base.css).
+ * Features a high-contrast axonometric 3D viewport with interactive scrollytelling.
+ */
+
+:root {
+  --canvas-surface: #071018;
+  --hud-bg: rgba(6, 16, 27, 0.94);
+  --hud-border: rgba(255, 255, 255, 0.18);
+  --card-dark: #0B1622;
+  --card-dark-active: #0E2032;
+  --text-on-dark: #E2E8F0;
+  --text-muted-dark: #94A3B8;
+}
+
+/* Page Base */
+body.explorer-page {
+  background-color: var(--navy-deep);
+  color: var(--text-on-dark);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Accessible Focus States */
+body.explorer-page a:focus-visible,
+body.explorer-page button:focus-visible {
+  outline: 2px solid var(--teal-bright);
+  outline-offset: 2px;
+}
+
+/* Unified Dark Theme Header on 3D Explorer */
+body.explorer-page .site-header {
+  background: rgba(6, 16, 27, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body.explorer-page .header-inner {
+  min-height: 62px;
+}
+
+body.explorer-page .brand {
+  color: #FFFFFF;
+}
+
+body.explorer-page .brand img {
+  width: 38px;
+  height: 38px;
+}
+
+body.explorer-page .brand-title {
+  color: #FFFFFF;
+  font-size: 19px;
+}
+
+body.explorer-page .brand-sub {
+  color: #94A3B8;
+  font-size: 11px;
+}
+
+body.explorer-page .nav a {
+  color: #CBD5E1;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+body.explorer-page .nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+body.explorer-page .nav a[aria-current="page"] {
+  background: transparent;
+  color: #FFFFFF;
+  box-shadow: inset 0 -2px 0 #2DD4BF;
+  font-weight: 700;
+}
+
+body.explorer-page .nav-dropdown-toggle {
+  color: #CBD5E1;
+}
+
+body.explorer-page .nav-dropdown-toggle:hover {
+  color: #FFFFFF;
+}
+
+body.explorer-page .nav-dropdown-menu {
+  background: #0A1826;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+}
+
+body.explorer-page .nav-dropdown-menu a {
+  color: #CBD5E1;
+}
+
+body.explorer-page .nav-dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+body.explorer-page .nav-member-name {
+  color: #FFFFFF;
+}
+
+body.explorer-page .nav-member-dept {
+  color: #94A3B8;
+}
+
+body.explorer-page .nav-toggle-bars,
+body.explorer-page .nav-toggle-bars::before,
+body.explorer-page .nav-toggle-bars::after {
+  background: #FFFFFF;
+}
+
+body.explorer-page .site-header.nav-open .nav,
+body.explorer-page .nav {
+  background: #06101B;
+}
+
+/* 1. Page Title and Introduction (Inside Narrative Column) */
+.explorer-intro {
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.explorer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2DD4BF;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.explorer-badge::before {
+  content: "";
+  width: 10px;
+  height: 2px;
+  background: #2DD4BF;
+}
+
+.explorer-title {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
+  margin: 0 0 10px;
+  line-height: 1.15;
+}
+
+.explorer-desc {
+  font-size: 13.5px;
+  color: #94A3B8;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* 2. Main Two-Column Scrollytelling Layout */
+.explorer-layout {
+  display: flex;
+  position: relative;
+  min-height: 100vh;
+  background: var(--navy-deep);
+}
+
+/* Left Narrative Column */
+.scrolly-main {
+  width: 44%;
+  max-width: 580px;
+  padding: 44px 32px 100px 40px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+}
+
+.narrative-section {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px 0;
+  box-sizing: border-box;
+}
+
+/* Narrative Card (Engineering Slate Surface) */
+.narrative-card {
+  background: #0B1622;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 26px 22px;
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.narrative-section.is-active .narrative-card {
+  background: #0E2032;
+  border-color: rgba(40, 167, 172, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.card-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--teal-bright);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.card-eyebrow .badge-sep {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.card-title {
+  margin: 0 0 12px;
+  color: var(--white);
+  font-family: var(--font-head);
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+}
+
+.card-summary {
+  color: var(--text-on-dark);
+  font-size: 14.5px;
+  line-height: 1.65;
+  margin: 0 0 18px;
+}
+
+/* Architectural Specification Tables */
+.spec-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 1.25rem 0;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+}
+
+.spec-label {
+  color: #7E93A6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+}
+
+.spec-value {
+  color: #F1F5F9;
+  font-weight: 600;
+}
+
+/* Technical Detail Callout Rows */
+.spec-pins-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.spec-pin-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.spec-pin-item:hover,
+.spec-pin-item.is-highlighted {
+  background: rgba(13, 115, 119, 0.18);
+  border-color: rgba(40, 167, 172, 0.4);
+}
+
+.spec-pin-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #8ED1D4;
+  background: rgba(13, 115, 119, 0.28);
+  border: 1px solid rgba(40, 167, 172, 0.35);
+  padding: 2px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.spec-pin-text {
+  font-size: 13px;
+  color: var(--text-on-dark);
+  line-height: 1.45;
+}
+
+.spec-pin-text strong {
+  color: var(--white);
+  display: block;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+/* Scroll Direction Prompt */
+.scroll-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--teal-bright);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 14px;
+}
+
+.prompt-icon {
+  font-size: 14px;
+}
+
+/* Narrative Card Actions & High-Contrast Flat Buttons */
+.narrative-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.narrative-actions .btn--primary {
+  background: var(--teal);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.narrative-actions .btn--primary:hover {
+  background: var(--teal-dark);
+  color: var(--white);
+}
+
+.explorer-page .btn--outline,
+.narrative-actions .btn--outline {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: #E2E8F0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.explorer-page .btn--outline:hover,
+.narrative-actions .btn--outline:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+}
+
+/* 3. Sticky 3D Viewport Column with Subtle CAD Blueprint Grid */
+.canvas-viewport {
+  flex: 1;
+  position: sticky;
+  top: 62px;
+  height: calc(100vh - 62px);
+  align-self: flex-start;
+  overflow: hidden;
+  background-color: #071018;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#canvas-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+#canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Unified Docked Viewport HUD Bar (High Contrast) */
+.viewport-hud-dock {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(6, 16, 27, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  padding: 7px 14px;
+  z-index: 20;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.hud-stage-segment {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: #E2E8F0;
+  white-space: nowrap;
+}
+
+.hud-stage-label {
+  font-size: 11px;
+  color: #94A3B8;
+  letter-spacing: 0.08em;
+}
+
+.hud-stage-segment strong {
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hud-slash,
+.hud-total {
+  color: #94A3B8;
+}
+
+.hud-stage-sep {
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0 1px;
+}
+
+.hud-stage-title {
+  color: #E2E8F0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Scrubber in HUD dock */
+.hud-scrubber {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(3, 10, 18, 0.75);
+  padding: 3px 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hud-scrubber::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.scrubber-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #94A3B8;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  padding: 3px 6px;
+  cursor: pointer;
+  line-height: 1;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.scrubber-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.scrubber-btn.is-active {
+  background: rgba(45, 212, 191, 0.22);
+  border-color: #2DD4BF;
+  color: #2DD4BF;
+}
+
+.scrubber-btn:focus-visible {
+  outline: 2px solid #2DD4BF;
+  outline-offset: 1px;
+}
+
+.hud-controls-segment {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-hud {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
+  color: #F8FAFC;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-hud:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+}
+
+.btn-hud.is-active,
+.btn-hud[aria-pressed="true"] {
+  background: rgba(45, 212, 191, 0.22);
+  border-color: #2DD4BF;
+  color: #2DD4BF;
+}
+
+.btn-hud:focus-visible {
+  outline: 2px solid #2DD4BF;
+  outline-offset: 1px;
+}
+
+.hud-vsep {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Viewport Loading / Error State */
+.viewport-status {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 28px;
+  background: var(--canvas-surface);
+  color: var(--text-on-dark);
+  text-align: center;
+  pointer-events: none;
+}
+
+.viewport-status[hidden] {
+  display: none;
+}
+
+.viewport-status strong {
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.viewport-status span {
+  max-width: 340px;
+  color: var(--text-muted-dark);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.viewport-status.is-error {
+  background: var(--canvas-surface);
+  pointer-events: auto;
+}
+
+.viewport-status.is-error strong {
+  color: #FCA5A5;
+}
+
+/* 4. 2D Hotspot Pins in 3D Space */
+#pins-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hotspot-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: none;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: 25;
+}
+
+.pin-marker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--navy-deep);
+  border: 2px solid var(--teal-bright);
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.hotspot-pin:hover .pin-marker,
+.hotspot-pin.active .pin-marker {
+  background: var(--teal);
+  border-color: var(--white);
+  transform: scale(1.15);
+}
+
+.pin-tooltip {
+  background: var(--navy);
+  color: var(--white);
+  border: 1px solid rgba(220, 227, 234, 0.2);
+  border-radius: var(--radius);
+  padding: 5px 10px;
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+/* 5. Responsive Styles */
+@media (max-width: 960px) {
+  .explorer-layout {
+    flex-direction: column;
+  }
+
+  .canvas-viewport {
+    position: sticky;
+    top: 60px;
+    width: 100%;
+    height: 42vh;
+    z-index: 30;
+    align-self: auto;
+    border-left: none;
+    border-bottom: 1px solid rgba(220, 227, 234, 0.15);
+  }
+
+  .scrolly-main {
+    width: 100%;
+    max-width: 100%;
+    padding: 24px 20px 80px;
+  }
+
+  .narrative-section {
+    min-height: auto;
+    padding: 20px 0;
+  }
+
+  .narrative-card {
+    padding: 22px 18px;
+  }
+
+  .viewport-hud-dock {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    padding: 5px 10px;
+  }
+
+  .hud-stage-segment {
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .btn-hud {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .hud-scrubber {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  .scrubber-btn {
+    font-size: 11px;
+    padding: 2px 5px;
+  }
+}

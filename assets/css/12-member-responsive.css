@@ -1,0 +1,118 @@
+@media (max-width: 980px) {
+  .nav-dropdown-row {
+    width: 100%;
+  }
+
+  .nav-dropdown-row > a {
+    flex: 1 1 auto;
+  }
+
+  .nav-dropdown-toggle {
+    width: 42px;
+    height: 42px;
+  }
+
+  .nav .nav-dropdown-menu {
+    position: static;
+    display: none;
+    width: 100%;
+    max-height: none;
+    margin: 2px 0 6px;
+    padding: 2px 0 2px 12px;
+    overflow: visible;
+    border: 0;
+    border-left: 2px solid var(--teal-line);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu {
+    display: none;
+  }
+
+  .nav-dropdown.is-open .nav-dropdown-menu {
+    display: flex;
+  }
+
+  .nav-dropdown-menu::before {
+    display: none;
+  }
+
+  .nav .nav-dropdown-menu a {
+    padding: 8px 10px;
+  }
+
+  .member-hero-grid,
+  .member-profile-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .member-emblem {
+    min-height: 240px;
+  }
+
+  .member-emblem-icon {
+    width: 140px;
+    height: 140px;
+  }
+
+  .member-pager {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .member-pager-next {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  .member-hero {
+    padding: 22px 0 46px;
+  }
+
+  .member-breadcrumb {
+    margin-bottom: 24px;
+  }
+
+  .member-meta {
+    gap: 18px;
+  }
+
+  .member-meta-item {
+    min-width: calc(50% - 9px);
+  }
+
+  .member-week {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .member-week-marker span {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+  }
+
+  .member-week-card {
+    padding: 18px;
+  }
+
+  .member-week-head {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 520px) {
+  .member-hero-actions .btn {
+    width: 100%;
+  }
+}
+

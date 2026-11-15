@@ -1,0 +1,136 @@
+/* ==========================================================================
+   SDG Compliance and Matrix Section
+   ========================================================================== */
+
+.sdg-matrix-table td {
+  vertical-align: top;
+}
+
+.sdg-badge-cell {
+  white-space: nowrap;
+}
+
+.sdg-badge {
+  display: block;
+  font-family: var(--font-mono, monospace);
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--navy);
+}
+
+.sdg-tier-tag {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sdg-tier-tag--primary {
+  background: var(--teal-soft);
+  color: var(--teal-dark);
+}
+
+.sdg-tier-tag--supporting {
+  background: #F1F5F9;
+  color: #475569;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 34px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: #8FA6B8;
+  font-size: 11px;
+}
+
+.footer-bottom a {
+  color: #C9D6E1;
+  text-decoration: none;
+}
+
+.footer-bottom a:hover {
+  color: var(--white);
+}
+
+.embed-mode .site-header,
+.embed-mode .site-footer,
+.embed-mode .skip-link,
+.embed-mode .to-top {
+  display: none;
+}
+
+.embed-mode .hero-inner {
+  padding: 44px 0 48px;
+}
+
+.embed-mode .page-hero {
+  padding: 36px 0 40px;
+}
+
+.embed-mode .page-hero,
+.embed-mode .hero {
+  border-radius: 0;
+}
+
+.embed-mode .section {
+  padding: 52px 0;
+}
+
+.embed-mode .section--tight {
+  padding: 40px 0;
+}
+
+.to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--navy);
+  font-size: 17px;
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.to-top:hover {
+  background: var(--teal-soft);
+  color: var(--navy);
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+

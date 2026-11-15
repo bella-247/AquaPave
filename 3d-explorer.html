@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Layer Explorer | AquaPave · AASTU</title>
+  <meta name="description" content="Interactive 3D cross-section explorer of the AquaPave multi-layer permeable wash-pad prototype at Addis Ababa Science and Technology University.">
+  <meta name="theme-color" content="#0F2942">
+
+  <meta property="og:title" content="3D Layer Explorer | AquaPave">
+  <meta property="og:description" content="Explore the physical 7-layer treatment bed and gravity oil separator engineered for sustainable car-wash wastewater recycling at AASTU.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AquaPave">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <script>if (new URLSearchParams(location.search).has("embed")) document.documentElement.classList.add("embed-mode");</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Shared Site Stylesheet & 3D Explorer Layout -->
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/3d-explorer.css">
+
+  <!-- Vendor Libraries for Three.js & Animation -->
+  <script src="assets/3d/vendor/gsap.min.js"></script>
+  <script src="assets/3d/vendor/ScrollTrigger.min.js"></script>
+
+  <!-- ES Modules Import Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "./assets/3d/vendor/three.module.js",
+      "three/addons/controls/OrbitControls.js": "./assets/3d/vendor/OrbitControls.js"
+    }
+  }
+  </script>
+</head>
+<body class="explorer-page">
+  <a class="skip-link" href="#scrolly-content">Skip to 3D explorer content</a>
+
+  <!-- Standard AquaPave Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="AquaPave home">
+        <img src="assets/aastu-logo.png" alt="Addis Ababa Science and Technology University logo" width="46" height="46">
+        <span class="brand-copy">
+          <span class="brand-title">AquaPave</span>
+          <span class="brand-sub">IETP 4115 · Group 3</span>
+        </span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+      <nav class="nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About the Project</a></li>
+          <li><a href="3d-explorer.html" aria-current="page">3D Explorer</a></li>
+          <li><a href="teams.html">Teams</a></li>
+          <li class="nav-dropdown">
+            <div class="nav-dropdown-row">
+              <a href="contributions.html">Team Contributions</a>
+              <button class="nav-dropdown-toggle" type="button" aria-expanded="false" aria-controls="team-member-menu" aria-haspopup="true" aria-label="Show team member pages">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+            </div>
+            <ul class="nav-dropdown-menu" id="team-member-menu">
+              <li><a href="member-khalid-mustefa.html"><span class="nav-member-initials">KM</span><span class="nav-member-copy"><span class="nav-member-name">Khalid Mustefa Mohammed</span><span class="nav-member-dept">Civil Engineering</span></span></a></li>
+              <li><a href="member-bezawit-yohannes.html"><span class="nav-member-initials">BY</span><span class="nav-member-copy"><span class="nav-member-name">Bezawit Yohannes Assefa</span><span class="nav-member-dept">Chemical Engineering</span></span></a></li>
+              <li><a href="member-abel-mekonnen.html"><span class="nav-member-initials">AM</span><span class="nav-member-copy"><span class="nav-member-name">Abel Mekonnen Tesfaye</span><span class="nav-member-dept">Software Engineering</span></span></a></li>
+              <li><a href="member-natnael-gebeyehu.html"><span class="nav-member-initials">NG</span><span class="nav-member-copy"><span class="nav-member-name">Natnael Gebeyehu Girma</span><span class="nav-member-dept">Environmental Engineering</span></span></a></li>
+              <li><a href="member-fikir-tadesse.html"><span class="nav-member-initials">FT</span><span class="nav-member-copy"><span class="nav-member-name">Fikir Tadesse Demena</span><span class="nav-member-dept">Architectural Engineering</span></span></a></li>
+              <li><a href="member-tamiru-masresha.html"><span class="nav-member-initials">TM</span><span class="nav-member-copy"><span class="nav-member-name">Tamiru Masresha Bitew</span><span class="nav-member-dept">Software Engineering</span></span></a></li>
+              <li><a href="member-helen-abiti.html"><span class="nav-member-initials">HA</span><span class="nav-member-copy"><span class="nav-member-name">Helen Abiti Shimelis</span><span class="nav-member-dept">Electromechanical Engineering</span></span></a></li>
+              <li><a href="member-helen-kinfu.html"><span class="nav-member-initials">HI</span><span class="nav-member-copy"><span class="nav-member-name">Helen Kinfu Ibsa</span><span class="nav-member-dept">Electrical &amp; Computer Engineering</span></span></a></li>
+              <li><a href="member-negasi-brhanu.html"><span class="nav-member-initials">NB</span><span class="nav-member-copy"><span class="nav-member-name">Negasi Brhanu Tadele</span><span class="nav-member-dept">Electrical &amp; Computer Engineering</span></span></a></li>
+              <li><a href="member-betelhem-tewodros.html"><span class="nav-member-initials">BT</span><span class="nav-member-copy"><span class="nav-member-name">Betelhem Tewodros Yilma</span><span class="nav-member-dept">Electrical &amp; Computer Engineering</span></span></a></li>
+            </ul>
+          </li>
+          <li><a href="files.html">Files</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Scrollytelling Workspace -->
+  <div class="explorer-layout">
+
+    <!-- Left Scrolling Narrative Specifications -->
+    <main class="scrolly-main" id="scrolly-content">
+
+      <!-- Engineering Context Header -->
+      <header class="explorer-intro">
+        <div class="explorer-badge">AASTU IETP 4115 &middot; Physical Prototype Investigation</div>
+        <h1 class="explorer-title">3D Structural &amp; Layer Explorer</h1>
+        <p class="explorer-desc">
+          Axonometric view of the 500 &times; 300 mm treatment test bed engineered at AASTU. Scroll down to explode and inspect each filtration, adsorption, and plumbing layer.
+        </p>
+      </header>
+
+      <!-- Section 0: Assembled Prototype Overview -->
+      <section class="narrative-section is-active" data-section="0">
+        <div class="narrative-card">
+          <div class="card-eyebrow">
+            <span>Physical Prototype</span>
+            <span class="badge-sep">&middot;</span>
+            <span>AASTU Campus Test Rig</span>
+          </div>
+          <h2 class="card-title">AquaPave Treatment Architecture</h2>
+          <p class="card-summary">
+            Commercial vehicle wash bays across Addis Ababa consume 100&ndash;200 liters of potable water per vehicle, discharging soapy effluent containing motor oil, road grit, and heavy metals directly onto bare soil or into city drains. This bench-scale prototype (500 &times; 300 mm) combines civil pervious concrete, chemical adsorption, and electromechanical separation to clean wash water entirely by gravity for on-site vehicle rewashing.
+          </p>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Test Footprint</span>
+              <span class="spec-value">500 &times; 300 mm</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Flow Mode</span>
+              <span class="spec-value">Passive Gravity (0 W Pumping)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Target Standard</span>
+              <span class="spec-value">EEPA &amp; WHO Non-Potable (&lt;20 NTU)</span>
+            </div>
+          </div>
+          <div class="scroll-prompt">
+            <span class="prompt-icon">&darr;</span>
+            <span>Scroll down to explode the bed and inspect individual layers</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 1: Layer 1 — Pervious Concrete Slab -->
+      <section class="narrative-section" data-section="1">
+        <div class="narrative-card">
+          <div class="card-eyebrow">
+            <span>Layer 01 &middot; Structural Surface</span>
+            <span class="badge-sep">&middot;</span>
+            <span>Civil &amp; Architectural</span>
+          </div>
+          <h2 class="card-title">Pervious Concrete Slab</h2>
+          <p class="card-summary">
+            Cast in the AASTU civil engineering materials lab using single-sized 4.75&ndash;9.5 mm crushed basalt aggregate and Portland cement paste (water-to-cement ratio 0.36). Fine sand is intentionally omitted to form a matrix of open, interconnected pores. Cast with a 2.5% transverse slope, the slab allows dirty vehicle wash water to infiltrate immediately while withstanding vehicular wheel loads without surface puddling.
+          </p>
+          <div class="spec-pins-list">
+            <div class="spec-pin-item" data-pin="1">
+              <span class="spec-pin-num">1</span>
+              <div class="spec-pin-text">
+                <strong>Interconnected Macropores (15%&ndash;35% Voids)</strong>
+                Allows surface water to infiltrate at over 0.34 cm/s (ASTM C1701), eliminating standing wash puddles.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="2">
+              <span class="spec-pin-num">2</span>
+              <div class="spec-pin-text">
+                <strong>Alkaline Cement Buffering</strong>
+                Hydrated cement phases buffer mildly acidic wash detergent (pH 8.0&ndash;9.5) and assist heavy metal precipitation.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="3">
+              <span class="spec-pin-num">3</span>
+              <div class="spec-pin-text">
+                <strong>2.5% Transverse Slope</strong>
+                Prevents edge bypass and directs excess wash water evenly across the entire infiltration footprint.
+              </div>
+            </div>
+          </div>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Layer Thickness</span>
+              <span class="spec-value">80 mm Depth</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Compressive Strength</span>
+              <span class="spec-value">14.8 MPa (ASTM C39)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Target Void Ratio</span>
+              <span class="spec-value">20.4% Bulk Volume</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Layer 2 — Choker Stone & Geotextile -->
+      <section class="narrative-section" data-section="2">
+        <div class="narrative-card">
+          <div class="card-eyebrow">
+            <span>Layer 02 &middot; Bedding &amp; Biofilm Interface</span>
+            <span class="badge-sep">&middot;</span>
+            <span>Civil &amp; Chemical</span>
+          </div>
+          <h2 class="card-title">Choker Stone &amp; Geotextile Membrane</h2>
+          <p class="card-summary">
+            Directly beneath the rigid concrete slab sits a 50 mm bedding layer of 5&ndash;10 mm choker stone, resting on a 200 g/m&sup2; non-woven polypropylene geotextile fabric. This interface supports the upper slab, creates a uniform hydraulic head, and prevents fine sand from below from migrating upward into the concrete pores. The synthetic fibers also host aerobic biofilms that begin breaking down organic wash residues.
+          </p>
+          <div class="spec-pins-list">
+            <div class="spec-pin-item" data-pin="1">
+              <span class="spec-pin-num">1</span>
+              <div class="spec-pin-text">
+                <strong>5&ndash;10 mm Bedding Aggregate</strong>
+                Distributes structural tire loads evenly while establishing a steady vertical hydraulic gradient.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="2">
+              <span class="spec-pin-num">2</span>
+              <div class="spec-pin-text">
+                <strong>Non-Woven Geotextile Fabric</strong>
+                Synthetic needle-punched barrier prevents sand migration while maintaining high water permittivity (&gt;0.5 s&minus;&sup1;).
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="3">
+              <span class="spec-pin-num">3</span>
+              <div class="spec-pin-text">
+                <strong>Aerobic Biofilm Colonization</strong>
+                High fiber surface area hosts aerobic microbes that initiate biological degradation of car-wash soap residues.
+              </div>
+            </div>
+          </div>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Bed Thickness</span>
+              <span class="spec-value">50 mm Bedding</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Fabric Weight</span>
+              <span class="spec-value">200 g/m&sup2; Non-Woven PP</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Puncture Strength</span>
+              <span class="spec-value">&gt;1.8 kN (ASTM D4833)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Layer 3 — Washed River Sand Bed -->
+      <section class="narrative-section" data-section="3">
+        <div class="narrative-card">
+          <div class="card-eyebrow">
+            <span>Layer 03 &middot; Particulate Straining</span>
+            <span class="badge-sep">&middot;</span>
+            <span>Chemical &amp; Environmental</span>
+          </div>
+          <h2 class="card-title">Washed River Sand Bed</h2>
+          <p class="card-summary">
+            Sourced from local Ethiopian quarries, clean washed silica river sand (0.5&ndash;2.0 mm grain size, silt content &lt;1%) serves as the primary barrier against suspended solids. Raw car-wash water contains road mud and brake grit (186&ndash;561 mg/L TSS). This 60 mm bed removes over 65% of raw particulate matter through interstitial straining, protecting the expensive activated charcoal bed below from premature blinding.
+          </p>
+          <div class="spec-pins-list">
+            <div class="spec-pin-item" data-pin="1">
+              <span class="spec-pin-num">1</span>
+              <div class="spec-pin-text">
+                <strong>Washed Silica Sand Matrix</strong>
+                Clean quartz grains with minimal fines ensure steady, non-cementing percolation under continuous wash cycles.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="2">
+              <span class="spec-pin-num">2</span>
+              <div class="spec-pin-text">
+                <strong>Anti-Blinding Media Barrier</strong>
+                Arrests heavy suspended sediment (186&ndash;561 mg/L TSS) before it reaches the carbon adsorption layer.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="3">
+              <span class="spec-pin-num">3</span>
+              <div class="spec-pin-text">
+                <strong>Flow Equalization</strong>
+                Diffuses concentrated wash streams uniformly across the entire cross-section of the lower treatment beds.
+              </div>
+            </div>
+          </div>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Layer Depth</span>
+              <span class="spec-value">60 mm Layer</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Grain Size</span>
+              <span class="spec-value">0.5&ndash;2.0 mm Sieve</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">TSS Retention</span>
+              <span class="spec-value">&gt;65% Single Pass</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Layer 4 — Wood Charcoal / GAC -->
+      <section class="narrative-section" data-section="4">
+        <div class="narrative-card">
+          <div class="card-eyebrow">
+            <span>Layer 04 &middot; Hydrocarbon Adsorption</span>
+            <span class="badge-sep">&middot;</span>
+            <span>Chemical Engineering</span>
+          </div>
+          <h2 class="card-title">Crushed Wood Charcoal Bed</h2>
+          <p class="card-summary">
+            Car wash wastewater carries dissolved motor oil (12&ndash;325 mg/L) and anionic surfactants from commercial soaps (~13 mg/L) that slip through simple gravel drains. Layer 4 uses locally sourced wood charcoal crushed and sieved to 1.5&ndash;4.0 mm. Its extensive internal microporous structure (400&ndash;800 m&sup2;/g) traps hydrophobic oil droplets and detergent molecules through surface adsorption.
+          </p>
+          <div class="spec-pins-list">
+            <div class="spec-pin-item" data-pin="1">
+              <span class="spec-pin-num">1</span>
+              <div class="spec-pin-text">
+                <strong>Microporous Carbon Lattice</strong>
+                Provides high-capacity surface adsorption sites that bind dissolved engine oil hydrocarbons.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="2">
+              <span class="spec-pin-num">2</span>
+              <div class="spec-pin-text">
+                <strong>Surfactant &amp; Soap Attenuation</strong>
+                Attenuates foaming detergents to destabilize and break emulsified oil-water mixtures.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="3">
+              <span class="spec-pin-num">3</span>
+              <div class="spec-pin-text">
+                <strong>Dual-Stage Polishing</strong>
+                Works together with the lower pumice layer to strip residual petroleum sheen from percolating effluent.
+              </div>
+            </div>
+          </div>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Layer Depth</span>
+              <span class="spec-value">60 mm Bed</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Specific Surface Area</span>
+              <span class="spec-value">400&ndash;800 m&sup2;/g</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Oil Adsorption</span>
+              <span class="spec-value">~14.2 mg/g Media</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Layer 5 — Vesicular Volcanic Pumice -->
+      <section class="narrative-section" data-section="5">
+        <div class="narrative-card">
+          <div class="card-eyebrow">
+            <span>Layer 05 &middot; Mineral Sorption &amp; Sub-Base</span>
+            <span class="badge-sep">&middot;</span>
+            <span>Chemical &amp; Environmental</span>
+          </div>
+          <h2 class="card-title">Ethiopian Rift Valley Pumice</h2>
+          <p class="card-summary">
+            A key local material innovation in the AquaPave design is the use of natural volcanic pumice from the Ethiopian Great Rift Valley. This vesicular rock is abundant, lightweight, and inexpensive. Its honeycomb porosity (60%&ndash;75%) serves as an internal storage reservoir during peak wash volume, while its natural alumino-silicate structure provides cation exchange capacity (25&ndash;40 meq/100g) to capture heavy metals like lead (Pb) and zinc (Zn) from brake dust.
+          </p>
+          <div class="spec-pins-list">
+            <div class="spec-pin-item" data-pin="1">
+              <span class="spec-pin-num">1</span>
+              <div class="spec-pin-text">
+                <strong>Vesicular Pumice Matrix</strong>
+                Honeycomb cavities act as a temporary surge buffer during rapid vehicle wash downpours.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="2">
+              <span class="spec-pin-num">2</span>
+              <div class="spec-pin-text">
+                <strong>Heavy Metal Cation Exchange</strong>
+                Binds dissolved lead (0.53 mg/L) and zinc (1.98 mg/L) through natural mineral ion exchange.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="3">
+              <span class="spec-pin-num">3</span>
+              <div class="spec-pin-text">
+                <strong>Local Sourcing Advantage</strong>
+                Replaces costly imported filtration media with locally available Rift Valley volcanic deposits.
+              </div>
+            </div>
+          </div>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Layer Depth</span>
+              <span class="spec-value">80 mm Sub-base</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Total Porosity</span>
+              <span class="spec-value">60%&ndash;75% Bulk Volume</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Cation Exchange (CEC)</span>
+              <span class="spec-value">25&ndash;40 meq/100g</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Layer 6 — Perforated Underdrain -->
+      <section class="narrative-section" data-section="6">
+        <div class="narrative-card">
+          <div class="card-eyebrow">
+            <span>Layer 06 &middot; Gravity Collection</span>
+            <span class="badge-sep">&middot;</span>
+            <span>Electromechanical</span>
+          </div>
+          <h2 class="card-title">Slotted Underdrain &amp; Pea Gravel</h2>
+          <p class="card-summary">
+            At the base of the multi-layer bed, a 50 mm (2-inch) PVC pipe with precision 1.5 &times; 25 mm transverse slots collects filtered water from across the entire test footprint. The pipe is bedded in a 70 mm envelope of 10&ndash;20 mm washed pea gravel to prevent fine aggregate from choking the intake slots. Laid at a 1.5% slope, it conveys effluent smoothly into the gravity oil separator without requiring mechanical pumping.
+          </p>
+          <div class="spec-pins-list">
+            <div class="spec-pin-item" data-pin="1">
+              <span class="spec-pin-num">1</span>
+              <div class="spec-pin-text">
+                <strong>Slotted PVC Collector Pipe</strong>
+                Precision transverse slots collect filtered effluent across the entire length of the bed.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="2">
+              <span class="spec-pin-num">2</span>
+              <div class="spec-pin-text">
+                <strong>10&ndash;20 mm Pea Gravel Envelope</strong>
+                Maintains open flow channels around pipe slots to prevent localized flow constriction.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="3">
+              <span class="spec-pin-num">3</span>
+              <div class="spec-pin-text">
+                <strong>Sampling Port</strong>
+                Allows student teams to draw water samples directly from the underdrain to test each layer's performance.
+              </div>
+            </div>
+          </div>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Pipe Diameter</span>
+              <span class="spec-value">50 mm (2 in) Schedule 40</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Gravel Depth</span>
+              <span class="spec-value">70 mm Envelope</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Conveyance Slope</span>
+              <span class="spec-value">1.5% Longitudinal Fall</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Layer 7 — Oil Separator & Reuse Tank -->
+      <section class="narrative-section" data-section="7">
+        <div class="narrative-card">
+          <div class="card-eyebrow">
+            <span>Layer 07 &middot; Skimming &amp; Telemetry</span>
+            <span class="badge-sep">&middot;</span>
+            <span>Electromechanical, ECE &amp; Software</span>
+          </div>
+          <h2 class="card-title">Baffled Separator, Reuse Tank &amp; ESP32</h2>
+          <p class="card-summary">
+            Effluent from the underdrain enters a two-compartment acrylic unit. Chamber A is a Stokes' law oil-water separator with three alternating baffles that slow flow into a quiescent regime, allowing free oil droplets to float and be held behind a skimming weir. Clarified water passes into Chamber B (the reuse tank), where an ESP32 node logs optical turbidity and ultrasonic water levels in real time to alert operators before clogging occurs.
+          </p>
+          <div class="spec-pins-list">
+            <div class="spec-pin-item" data-pin="1">
+              <span class="spec-pin-num">1</span>
+              <div class="spec-pin-text">
+                <strong>Baffled Stokes' Law Separator (API 421)</strong>
+                Quiescent settling zone allows buoyant oil droplets down to 150 &micro;m to separate and collect at the surface.
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="2">
+              <span class="spec-pin-num">2</span>
+              <div class="spec-pin-text">
+                <strong>Clarified Non-Potable Reuse Tank</strong>
+                Stores treated water for vehicle pre-rinsing and wheel washing (&lt;20 NTU target).
+              </div>
+            </div>
+            <div class="spec-pin-item" data-pin="3">
+              <span class="spec-pin-num">3</span>
+              <div class="spec-pin-text">
+                <strong>ESP32 Smart Telemetry Node</strong>
+                Continuously tracks turbidity and tank head, sending alerts if maintenance is needed.
+              </div>
+            </div>
+          </div>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Effluent Oil</span>
+              <span class="spec-value">&lt;5 mg/L Target</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Turbidity</span>
+              <span class="spec-value">&lt;20 NTU Reuse</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Telemetry</span>
+              <span class="spec-value">ESP32 &middot; Ultrasonic &middot; Turbidity</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Flow Simulation & Operational Integration -->
+      <section class="narrative-section" data-section="8">
+        <div class="narrative-card">
+          <div class="card-eyebrow">
+            <span>System Integration &middot; Full Operating Train</span>
+            <span class="badge-sep">&middot;</span>
+            <span>IETP 4115 Verification</span>
+          </div>
+          <h2 class="card-title">Full Treatment Train Flow Simulation</h2>
+          <p class="card-summary">
+            Reassembled in its operating configuration, simulated wash influent carrying 186&ndash;561 mg/L TSS, 12&ndash;325 mg/L oil, and 187&ndash;483 NTU turbidity percolates continuously through the complete prototype. The combined sequence—surface straining, depth sand filtration, carbon adsorption, pumice ion exchange, and gravity skimming—produces clarified water suitable for reuse, saving an estimated 1,000&ndash;2,000 liters of potable municipal water per commercial bay daily.
+          </p>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Turbidity Reduction</span>
+              <span class="spec-value">187&ndash;483 &rarr; &lt;20 NTU</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Water Savings</span>
+              <span class="spec-value">1,000&ndash;2,000 L/day per bay</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">UN SDG Alignment</span>
+              <span class="spec-value">SDG 6 (Clean Water), 9 &amp; 11</span>
+            </div>
+          </div>
+          <div class="narrative-actions">
+            <a href="about.html" class="btn btn--primary">Read Full Project Architecture &rarr;</a>
+            <a href="contributions.html" class="btn btn--outline">View Team Contributions</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Sticky 3D Canvas Viewport Column -->
+    <aside class="canvas-viewport" aria-label="3D Interactive Cross-Section">
+      <div id="canvas-container" aria-label="AquaPave 3D Interactive Model">
+        <div class="viewport-hud-dock">
+          <div class="hud-stage-segment">
+            <span class="badge-dot" aria-hidden="true"></span>
+            <span class="hud-stage-label">STAGE</span>
+            <strong id="stage-indicator">00</strong>
+            <span class="hud-slash">/</span>
+            <span class="hud-total">08</span>
+            <span class="hud-stage-sep" aria-hidden="true">&middot;</span>
+            <span class="hud-stage-title" id="stage-name-display">Assembled Model</span>
+          </div>
+
+          <!-- Quick Jump Scrubber (00 to 08) -->
+          <nav class="hud-scrubber" aria-label="Layer quick jump">
+            <button class="scrubber-btn is-active" data-jump="0" type="button" title="00: Assembled Model">00</button>
+            <button class="scrubber-btn" data-jump="1" type="button" title="01: Pervious Concrete Slab">01</button>
+            <button class="scrubber-btn" data-jump="2" type="button" title="02: Choker Course &amp; Geotextile">02</button>
+            <button class="scrubber-btn" data-jump="3" type="button" title="03: Silica Sand Filter Bed">03</button>
+            <button class="scrubber-btn" data-jump="4" type="button" title="04: Activated Carbon Adsorption">04</button>
+            <button class="scrubber-btn" data-jump="5" type="button" title="05: Volcanic Pumice Mineral Bed">05</button>
+            <button class="scrubber-btn" data-jump="6" type="button" title="06: Perforated Underdrain">06</button>
+            <button class="scrubber-btn" data-jump="7" type="button" title="07: Gravity Oil Separator">07</button>
+            <button class="scrubber-btn" data-jump="8" type="button" title="08: Integrated Flow Test">08</button>
+          </nav>
+
+          <div class="hud-controls-segment">
+            <button class="btn-hud" id="toggle-orbit" type="button" aria-pressed="false" title="Toggle free mouse rotation">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              <span>360&deg; Orbit</span>
+            </button>
+            <span class="hud-vsep" aria-hidden="true"></span>
+            <button class="btn-hud" id="toggle-flow" type="button" aria-pressed="false" title="Simulate water infiltration">
+              <span class="ctrl-indicator" aria-hidden="true"></span>
+              <span>Simulate Flow</span>
+            </button>
+          </div>
+        </div>
+        <div class="viewport-status" id="viewport-status" role="status" aria-live="polite">
+          <strong>Loading 3D model&hellip;</strong>
+          <span>Preparing the WebGL viewport.</span>
+        </div>
+        <div id="pins-overlay"></div>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Standard AquaPave Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="footer-brand" href="index.html" aria-label="AquaPave home">
+            <img src="assets/aastu-logo-white.png" alt="" width="44" height="44">
+            <div class="footer-brand-copy">
+              <strong>AquaPave</strong>
+              <span>IETP 4115 · Group 3</span>
+            </div>
+          </a>
+          <p>A small test wash pad in Addis Ababa that cleans dirty water from car washing and reuses it on site. Built by students from seven engineering departments at AASTU.</p>
+          <p class="footer-meta">Project Advisor: Belay Gemeda Edeo (Architecture Engineering)</p>
+        </div>
+        <div class="footer-col">
+          <h4>Project</h4>
+          <a href="index.html">Home</a>
+          <a href="about.html">About the Project</a>
+          <a href="3d-explorer.html">3D Layer Explorer</a>
+          <a href="teams.html">Teams</a>
+          <a href="contributions.html">Team Contributions</a>
+          <a href="files.html">Files</a>
+          <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="footer-col">
+          <h4>Academic Institution</h4>
+          <p class="footer-inst">Addis Ababa Science and Technology University</p>
+          <p class="footer-inst-sub">College of Engineering<br>Integrated Engineering Team Project (IETP 4115)</p>
+          <p class="footer-inst-loc">Addis Ababa, Ethiopia · Academic Year 2026/2027</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026/27 IETP Group 3 · Addis Ababa Science and Technology University</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Site Navigation & Mobile Dropdown Controller -->
+  <script src="assets/main.js" defer></script>
+
+  <!-- Standalone 3D Coordinator Bundle (Compatible with both file:// and http://) -->
+  <script src="assets/3d/bundle.js" defer></script>
+</body>
+</html>

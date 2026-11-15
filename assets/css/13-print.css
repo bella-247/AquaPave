@@ -1,0 +1,47 @@
+@media print {
+  .site-header,
+  .site-footer,
+  .to-top,
+  .hero-actions,
+  .cta,
+  .btn {
+    display: none !important;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  .hero,
+  .page-hero {
+    padding: 24px 0;
+    background: var(--white) !important;
+    color: var(--text) !important;
+    border-bottom: 2px solid var(--navy);
+  }
+
+  .hero h1,
+  .page-hero h1,
+  .hero-subtitle,
+  .page-hero p,
+  .badge,
+  .hero-meta span {
+    color: var(--navy) !important;
+  }
+
+  .section {
+    padding: 24px 0;
+    break-inside: avoid;
+  }
+
+  .card,
+  .stat,
+  .objective,
+  .stage-card,
+  .accordion,
+  .doc-entry,
+  .gallery-card {
+    break-inside: avoid;
+  }
+
+}
