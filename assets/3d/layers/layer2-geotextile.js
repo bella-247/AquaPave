@@ -4,7 +4,7 @@
  * Specs: 5–10 mm Choker Aggregate | 2–5 mm Bedding Stone | Non-Woven Polymer Geotextile
  */
 
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.js';
 import { createGravelTexture, createGeotextileTexture } from '../textures.js';
 
 export function createLayer2(dimensions = { width: 5.0, depth: 3.0, height: 0.35 }) {

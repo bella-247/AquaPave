@@ -4,7 +4,7 @@
  * Specs: Physical-Chemical Adsorption | Targets: 12–325 mg/L O&G & ~13 mg/L Anionic Surfactants
  */
 
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.js';
 import { createCharcoalTexture } from '../textures.js';
 
 export function createLayer4(dimensions = { width: 5.0, depth: 3.0, height: 0.8 }) {

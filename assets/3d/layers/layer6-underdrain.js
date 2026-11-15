@@ -4,7 +4,7 @@
  * Specs: Slotted PVC Underdrain | 10–20 mm Gravel Surround | Laminar Outflow Conveyance
  */
 
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.js';
 import { createGravelTexture } from '../textures.js';
 
 export function createLayer6(dimensions = { width: 5.0, depth: 3.0, height: 0.55 }) {

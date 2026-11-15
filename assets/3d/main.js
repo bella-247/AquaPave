@@ -4,7 +4,7 @@
  * pin projector, and GSAP ScrollTrigger timeline.
  */
 
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
 import { createSceneManager } from './scene-manager.js';
 import { createLayer1 } from './layers/layer1-slab.js';
 import { createLayer2 } from './layers/layer2-geotextile.js';
@@ -18,6 +18,22 @@ import { createParticleFlowSystem } from './particles.js';
 import { createPinProjector } from './pin-projector.js';
 import { createScrollytellingController } from './scrollytelling.js';
 
+function setViewportStatus(title, detail, isError = false) {
+  const status = document.getElementById('viewport-status');
+  if (!status) return;
+  status.hidden = false;
+  status.classList.toggle('is-error', isError);
+  const titleEl = status.querySelector('strong');
+  const detailEl = status.querySelector('span');
+  if (titleEl) titleEl.textContent = title;
+  if (detailEl) detailEl.textContent = detail;
+}
+
+function hideViewportStatus() {
+  const status = document.getElementById('viewport-status');
+  if (status) status.hidden = true;
+}
+
 export function init3DExplorer() {
   const canvasContainer = document.getElementById('canvas-container');
   if (!canvasContainer) {
@@ -25,19 +41,32 @@ export function init3DExplorer() {
     return;
   }
 
-  // 1. WebGL Support Verification
   try {
-    const testCanvas = document.createElement('canvas');
-    const gl = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
-    if (!gl && !window.WebGLRenderingContext) {
-      canvasContainer.innerHTML = `
-        <div class="webgl-fallback" style="padding: 40px; color: #8FA6B8; font-family: monospace;">
-          <p>WebGL is not enabled in your current browser.</p>
-        </div>
-      `;
-      return;
-    }
-  } catch (e) {}
+    start3DExplorer(canvasContainer);
+  } catch (error) {
+    console.error('3D Explorer Error:', error);
+    setViewportStatus(
+      '3D model could not start',
+      'WebGL may be unavailable or blocked. Enable hardware acceleration and reload the page.',
+      true
+    );
+  }
+}
+
+function start3DExplorer(canvasContainer) {
+  // 1. WebGL Support Verification
+  const testCanvas = document.createElement('canvas');
+  const gl = testCanvas.getContext('webgl2') ||
+    testCanvas.getContext('webgl') ||
+    testCanvas.getContext('experimental-webgl');
+  if (!gl) {
+    setViewportStatus(
+      '3D model unavailable',
+      'This browser could not create a WebGL context. Enable hardware acceleration and reload the page.',
+      true
+    );
+    return;
+  }
 
   // 2. Initialize Three.js Scene, Camera, Lights, and Renderer
   const sceneManager = createSceneManager(canvasContainer);
@@ -136,6 +165,7 @@ export function init3DExplorer() {
 
   // 9. Main Animation & Render Loop
   const clock = new THREE.Clock();
+  let firstFrame = true;
 
   function animate() {
     requestAnimationFrame(animate);
@@ -154,7 +184,16 @@ export function init3DExplorer() {
     pinProjector.update();
 
     renderer.render(scene, camera);
+
+    if (firstFrame) {
+      firstFrame = false;
+      hideViewportStatus();
+    }
   }
+
+  // Immediate first frame render
+  renderer.render(scene, camera);
+  hideViewportStatus();
 
   animate();
 
@@ -164,7 +203,9 @@ export function init3DExplorer() {
 
 // Auto-boot if loaded directly in browser
 if (typeof document !== 'undefined') {
-  if (document.readyState === 'loading') {
+  if (document.getElementById('canvas-container')) {
+    init3DExplorer();
+  } else if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init3DExplorer);
   } else {
     init3DExplorer();

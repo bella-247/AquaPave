@@ -4,7 +4,7 @@
  * Specs: Stokes' Law Separator (A ≥ 0.04 m²) | ESP32 Telemetry | Targets: <20 NTU, <50 mg/L TSS, <5 mg/L O&G
  */
 
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.js';
 
 export function createLayer7(dimensions = { width: 4.8, depth: 2.2, height: 1.1 }) {
   const { width: W, depth: D, height: H } = dimensions;
@@ -12,14 +12,13 @@ export function createLayer7(dimensions = { width: 4.8, depth: 2.2, height: 1.1 
   group.name = 'Layer7_BaffledSeparatorAndIoT';
 
   // Common glass/acrylic material for separator & tank walls
-  const acrylicMat = new THREE.MeshPhysicalMaterial({
+  const acrylicMat = new THREE.MeshStandardMaterial({
     color: '#DCE8F5',
     transparent: true,
-    opacity: 0.38,
-    roughness: 0.12,
-    transmission: 0.88,
-    thickness: 0.4,
-    metalness: 0.05
+    opacity: 0.35,
+    roughness: 0.15,
+    metalness: 0.05,
+    depthWrite: false
   });
 
   // -------------------------------------------------------------
@@ -74,12 +73,12 @@ export function createLayer7(dimensions = { width: 4.8, depth: 2.2, height: 1.1 
 
   // Clarified water body inside Chamber B (crystal-clear aqua-teal)
   const waterGeom = new THREE.BoxGeometry(chBWidth - 0.08, H * 0.82, D - 0.08);
-  const waterMat = new THREE.MeshPhysicalMaterial({
+  const waterMat = new THREE.MeshStandardMaterial({
     color: '#28A7AC',
     transparent: true,
-    opacity: 0.62,
-    roughness: 0.08,
-    transmission: 0.75
+    opacity: 0.65,
+    roughness: 0.1,
+    metalness: 0.1
   });
   const waterMesh = new THREE.Mesh(waterGeom, waterMat);
   waterMesh.position.set(W / 4 + 0.1, -H * 0.08, 0);

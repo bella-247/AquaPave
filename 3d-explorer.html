@@ -560,6 +560,10 @@
             <button class="btn-ctrl" id="toggle-flow" type="button" aria-pressed="false" title="Simulate water infiltration">Simulate Flow</button>
           </div>
         </div>
+        <div class="viewport-status" id="viewport-status" role="status" aria-live="polite">
+          <strong>Loading 3D model&hellip;</strong>
+          <span>Preparing the WebGL viewport.</span>
+        </div>
         <div id="pins-overlay"></div>
       </div>
     </aside>
@@ -608,6 +612,9 @@
   <script src="assets/main.js" defer></script>
 
   <!-- ES Modules 3D Coordinator Script -->
-  <script type="module" src="assets/3d/main.js"></script>
+  <script type="module">
+    import { init3DExplorer } from './assets/3d/main.js';
+    init3DExplorer();
+  </script>
 </body>
 </html>

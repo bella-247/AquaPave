@@ -4,7 +4,7 @@
  * Eliminates all external image downloads for instant lazy loading and zero asset latency.
  */
 
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
 
 const textureCache = new Map();
 

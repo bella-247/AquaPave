@@ -4,7 +4,7 @@
  * Standard: ACI 522R-10 | 15%–35% Voids (~20% Target) | w/c = 0.27–0.34
  */
 
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.js';
 import { createConcreteTexture } from '../textures.js';
 
 export function createLayer1(dimensions = { width: 5.0, depth: 3.0, height: 0.75 }) {

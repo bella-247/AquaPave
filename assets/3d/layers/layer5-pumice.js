@@ -4,7 +4,7 @@
  * Specs: Cation Exchange & Mineral Sorption | Targets: Pb (0.53 mg/L) & Zn (1.98 mg/L)
  */
 
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.js';
 import { createPumiceTexture } from '../textures.js';
 
 export function createLayer5(dimensions = { width: 5.0, depth: 3.0, height: 0.8 }) {

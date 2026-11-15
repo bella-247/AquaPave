@@ -4,7 +4,7 @@
  * Used in Section 0 (Unified Assembled Stack) & Section 8 (Reassembly)
  */
 
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.js';
 
 export function createContainmentCase(dimensions = { width: 5.25, depth: 3.25, height: 4.2 }) {
   const { width: W, depth: D, height: H } = dimensions;
@@ -12,14 +12,12 @@ export function createContainmentCase(dimensions = { width: 5.25, depth: 3.25, h
   group.name = 'Containment_Enclosure';
 
   // 1. Transparent acrylic outer wall container
-  const acrylicMat = new THREE.MeshPhysicalMaterial({
-    color: '#E0F2FE',
+  const acrylicMat = new THREE.MeshStandardMaterial({
+    color: '#BAE6FD',
     transparent: true,
-    opacity: 0.35,
-    roughness: 0.08,
-    metalness: 0.02,
-    transmission: 0.92,
-    thickness: 0.6,
+    opacity: 0.22,
+    roughness: 0.1,
+    metalness: 0.15,
     depthWrite: false
   });
 

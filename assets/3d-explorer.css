@@ -419,6 +419,49 @@ body.explorer-page button:focus-visible {
   color: var(--white);
 }
 
+/* Viewport Loading / Error State */
+.viewport-status {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 28px;
+  background: var(--canvas-surface);
+  color: var(--text-on-dark);
+  text-align: center;
+  pointer-events: none;
+}
+
+.viewport-status[hidden] {
+  display: none;
+}
+
+.viewport-status strong {
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.viewport-status span {
+  max-width: 340px;
+  color: var(--text-muted-dark);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.viewport-status.is-error {
+  background: var(--canvas-surface);
+  pointer-events: auto;
+}
+
+.viewport-status.is-error strong {
+  color: #FCA5A5;
+}
+
 /* 4. 2D Hotspot Pins in 3D Space */
 #pins-overlay {
   position: absolute;

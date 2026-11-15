@@ -4,7 +4,7 @@
  * Provides hardware-accelerated translate3d tracking and bidirectional card synchronization.
  */
 
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
 
 export function createPinProjector(containerEl, camera) {
   let pinsContainer = document.getElementById('pins-overlay');

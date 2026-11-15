@@ -4,7 +4,7 @@
  * Specs: Depth Filtration | Target Influent: 186–561 mg/L TSS & 187–483 NTU Turbidity
  */
 
-import * as THREE from 'three';
+import * as THREE from '../vendor/three.module.js';
 import { createSandTexture } from '../textures.js';
 
 export function createLayer3(dimensions = { width: 5.0, depth: 3.0, height: 0.6 }) {

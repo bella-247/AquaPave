@@ -4,8 +4,8 @@
  * Configured specifically for zero scroll-hijacking inside Google Sites iframes.
  */
 
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import * as THREE from './vendor/three.module.js';
+import { OrbitControls } from './vendor/OrbitControls.js';
 
 export function createSceneManager(containerEl) {
   const width = containerEl.clientWidth || window.innerWidth * 0.6;

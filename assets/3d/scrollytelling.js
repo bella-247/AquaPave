@@ -4,7 +4,7 @@
  * and 3D pin registration across the 8 scroll sections.
  */
 
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
 
 const gsap = window.gsap;
 const ScrollTrigger = window.ScrollTrigger;

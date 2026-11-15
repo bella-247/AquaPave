@@ -4,7 +4,7 @@
  * Murky brown (raw influent, 187–483 NTU) -> Amber -> Clean crystal aqua (<20 NTU).
  */
 
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
 
 export function createParticleFlowSystem(count = 150, bounds = { width: 4.6, depth: 2.6, topY: 2.2, bottomY: -2.0 }) {
   const { width: W, depth: D, topY, bottomY } = bounds;
