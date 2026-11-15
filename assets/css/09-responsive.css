@@ -1,22 +1,8 @@
 @media (max-width: 1080px) {
   .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    padding: 52px 0 60px;
-  }
-
-  .hero-copy {
-    max-width: 720px;
-  }
-
-  .hero-media {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .hero-image-card {
-    max-width: 680px;
-    margin: 0;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 32px;
+    padding: 54px 0 60px;
   }
 
   .schematic {
@@ -30,6 +16,41 @@
   .nav a {
     padding: 9px 8px;
     font-size: 12.5px;
+  }
+}
+
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 48px 0 54px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-specs {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-media {
+    width: 100%;
+  }
+
+  .hero-image-card {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 6px;
+  }
+
+  .hero-image {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
   }
 }
 

@@ -86,43 +86,80 @@ body.explorer-page button:focus-visible {
   margin: 0 0 16px;
 }
 
-/* Quick Jump Layer Pills */
-.jump-pills-bar {
+/* Quick Jump Sequential Pipeline Track */
+.pipeline-track {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 12px;
+  margin-top: 18px;
+  padding: 8px 12px;
+  background: rgba(9, 21, 33, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.jump-label {
+.pipeline-label {
   font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--text-muted-dark);
-  letter-spacing: 0.05em;
+  font-size: 10px;
+  font-weight: 700;
+  color: #728D9F;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
-.jump-pill {
-  appearance: none;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: var(--text-on-dark);
+.pipeline-steps {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+
+.pipeline-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: #9AB2C2;
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 16px;
   cursor: pointer;
+  white-space: nowrap;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-.jump-pill:hover {
-  background: var(--teal);
-  border-color: var(--teal-bright);
+.pipeline-step .step-num {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #5D778A;
+}
+
+.pipeline-step:hover {
+  background: rgba(255, 255, 255, 0.06);
   color: var(--white);
+}
+
+.pipeline-step.is-active {
+  background: rgba(20, 184, 166, 0.18);
+  border-color: rgba(40, 167, 172, 0.45);
+  color: var(--white);
+}
+
+.pipeline-step.is-active .step-num {
+  color: var(--teal-bright);
+}
+
+.step-line {
+  width: 10px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
 }
 
 /* 2. Main Two-Column Scrollytelling Layout */
@@ -152,23 +189,22 @@ body.explorer-page button:focus-visible {
   box-sizing: border-box;
 }
 
-/* Narrative Card */
+/* Narrative Card (Engineering Slate Surface) */
 .narrative-card {
-  background: var(--card-dark);
-  border: 1px solid rgba(220, 227, 234, 0.14);
-  border-radius: var(--radius-lg);
-  padding: 28px 24px;
-  box-shadow: 0 16px 40px rgba(10, 30, 51, 0.4);
+  background: #0B1622;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 26px 22px;
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(12px);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .narrative-section.is-active .narrative-card {
-  background: var(--card-dark-active);
-  border-color: var(--teal);
-  box-shadow:
-    0 20px 48px rgba(10, 30, 51, 0.5),
-    0 0 0 1px rgba(40, 167, 172, 0.25);
+  background: #0E2032;
+  border-color: rgba(40, 167, 172, 0.45);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .card-eyebrow {
@@ -205,45 +241,72 @@ body.explorer-page button:focus-visible {
   margin: 0 0 18px;
 }
 
-/* Numbered Pins Callout List */
+/* Architectural Specification Tables */
+.spec-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 1.25rem 0;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+}
+
+.spec-label {
+  color: #7E93A6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+}
+
+.spec-value {
+  color: #F1F5F9;
+  font-weight: 600;
+}
+
+/* Technical Detail Callout Rows */
 .spec-pins-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin: 0 0 18px;
+  margin: 0 0 16px;
 }
 
 .spec-pin-item {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  padding: 10px 13px;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(220, 227, 234, 0.1);
+  padding: 9px 12px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .spec-pin-item:hover,
 .spec-pin-item.is-highlighted {
-  background: rgba(13, 115, 119, 0.22);
-  border-color: var(--teal-bright);
+  background: rgba(13, 115, 119, 0.18);
+  border-color: rgba(40, 167, 172, 0.4);
 }
 
 .spec-pin-num {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--teal);
-  color: var(--white);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #8ED1D4;
+  background: rgba(13, 115, 119, 0.28);
+  border: 1px solid rgba(40, 167, 172, 0.35);
+  padding: 2px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
   margin-top: 1px;
 }
 
@@ -260,39 +323,6 @@ body.explorer-page button:focus-visible {
   margin-bottom: 2px;
 }
 
-/* Spec Pills Strip */
-.spec-highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.spec-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 10px;
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 12px;
-}
-
-.spec-pill-label {
-  color: var(--text-muted-dark);
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  text-transform: uppercase;
-}
-
-.spec-pill-val {
-  color: var(--white);
-  font-weight: 600;
-  font-family: var(--font-mono);
-}
-
 /* Scroll Direction Prompt */
 .scroll-prompt {
   display: inline-flex;
@@ -307,15 +337,9 @@ body.explorer-page button:focus-visible {
 
 .prompt-icon {
   font-size: 14px;
-  animation: bounceHint 2s infinite ease-in-out;
 }
 
-@keyframes bounceHint {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-
-/* Narrative Card Actions */
+/* Narrative Card Actions & High-Contrast Flat Buttons */
 .narrative-actions {
   display: flex;
   flex-wrap: wrap;
@@ -323,7 +347,35 @@ body.explorer-page button:focus-visible {
   margin-top: 20px;
 }
 
-/* 3. Sticky 3D Viewport Column */
+.narrative-actions .btn--primary {
+  background: var(--teal);
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.narrative-actions .btn--primary:hover {
+  background: var(--teal-dark);
+  color: var(--white);
+}
+
+.explorer-page .btn--outline,
+.narrative-actions .btn--outline {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.06);
+  color: #E2E8F0;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.explorer-page .btn--outline:hover,
+.narrative-actions .btn--outline:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+}
+
+/* 3. Sticky 3D Viewport Column with Subtle CAD Blueprint Grid */
 .canvas-viewport {
   flex: 1;
   position: sticky;
@@ -331,7 +383,9 @@ body.explorer-page button:focus-visible {
   height: calc(100vh - 78px);
   align-self: flex-start;
   overflow: hidden;
-  background: var(--canvas-surface);
+  background-color: #071018;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
   border-left: 1px solid rgba(220, 227, 234, 0.12);
 }
 
@@ -348,75 +402,85 @@ body.explorer-page button:focus-visible {
   height: 100% !important;
 }
 
-/* Viewport HUD & Controls */
-.viewport-hud {
+/* Unified Docked Viewport HUD Bar */
+.viewport-hud-dock {
   position: absolute;
-  top: 18px;
-  left: 20px;
-  right: 20px;
+  top: 16px;
+  left: 16px;
+  right: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  pointer-events: none;
+  gap: 12px;
+  background: rgba(9, 19, 28, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 6px 14px;
   z-index: 20;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 
-.stage-badge {
-  pointer-events: auto;
-  display: inline-flex;
+.hud-stage-segment {
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   font-family: var(--font-mono);
   font-size: 11.5px;
-  font-weight: 600;
-  color: var(--teal-bright);
-  background: var(--hud-bg);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--hud-border);
-  padding: 6px 12px;
-  border-radius: var(--radius);
-  letter-spacing: 0.04em;
+  color: #A3BDCC;
 }
 
-.badge-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--teal-bright);
-  box-shadow: 0 0 8px var(--teal-bright);
+.hud-stage-label {
+  font-size: 10px;
+  color: #6C8699;
+  letter-spacing: 0.08em;
 }
 
-.viewport-controls {
-  pointer-events: auto;
+.hud-stage-segment strong {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.hud-slash,
+.hud-total {
+  color: #5D778A;
+}
+
+.hud-controls-segment {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.btn-ctrl {
-  background: var(--hud-bg);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--hud-border);
-  color: var(--white);
+.btn-hud {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  color: #D2E4F0;
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
-  padding: 6px 12px;
-  border-radius: var(--radius);
+  padding: 5px 10px;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-.btn-ctrl:hover {
-  background: var(--navy);
-  border-color: var(--teal-bright);
+.btn-hud:hover,
+.btn-hud.is-active,
+.btn-hud[aria-pressed="true"] {
+  background: rgba(20, 184, 166, 0.22);
+  border-color: rgba(40, 167, 172, 0.5);
   color: var(--white);
 }
 
-.btn-ctrl.is-active {
-  background: var(--teal);
-  border-color: var(--teal-bright);
-  color: var(--white);
+.hud-vsep {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* Viewport Loading / Error State */
@@ -553,30 +617,30 @@ body.explorer-page button:focus-visible {
     padding: 22px 18px;
   }
 
-  .viewport-hud {
+  .viewport-hud-dock {
     top: 10px;
-    left: 12px;
-    right: 12px;
+    left: 10px;
+    right: 10px;
+    padding: 5px 10px;
   }
 
-  .stage-badge {
-    padding: 4px 9px;
+  .hud-stage-segment {
+    font-size: 10.5px;
+    gap: 5px;
+  }
+
+  .btn-hud {
+    padding: 4px 8px;
     font-size: 10.5px;
   }
 
-  .btn-ctrl {
-    padding: 4px 9px;
-    font-size: 11px;
-  }
-
-  .jump-pills-bar {
+  .pipeline-track {
     overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 6px;
-    -webkit-overflow-scrolling: touch;
+    padding: 6px 10px;
   }
 
-  .jump-pill {
-    flex-shrink: 0;
+  .pipeline-step {
+    font-size: 11px;
+    padding: 3px 6px;
   }
 }

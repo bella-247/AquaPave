@@ -94,17 +94,27 @@
       <p>
         An interactive axonometric view of the 500 &times; 300 mm multi-layer treatment test bed engineered at AASTU. Scroll to explode the cross-section and inspect each filtration, adsorption, and plumbing layer.
       </p>
-      <div class="jump-pills-bar">
-        <span class="jump-label">Jump to layer:</span>
-        <button class="jump-pill" data-jump="0" type="button">0. Assembled Model</button>
-        <button class="jump-pill" data-jump="1" type="button">1. Concrete Slab</button>
-        <button class="jump-pill" data-jump="2" type="button">2. Choker &amp; Geotextile</button>
-        <button class="jump-pill" data-jump="3" type="button">3. Sand Bed</button>
-        <button class="jump-pill" data-jump="4" type="button">4. Charcoal Bed</button>
-        <button class="jump-pill" data-jump="5" type="button">5. Volcanic Pumice</button>
-        <button class="jump-pill" data-jump="6" type="button">6. Underdrain</button>
-        <button class="jump-pill" data-jump="7" type="button">7. Oil Separator &amp; IoT</button>
-        <button class="jump-pill" data-jump="8" type="button">8. Flow Simulation</button>
+      <div class="pipeline-track" aria-label="Layer navigation track">
+        <span class="pipeline-label">PIPELINE SEQUENCE:</span>
+        <div class="pipeline-steps">
+          <button class="pipeline-step is-active" data-jump="0" type="button"><span class="step-num">00</span><span class="step-name">Assembly</span></button>
+          <span class="step-line" aria-hidden="true"></span>
+          <button class="pipeline-step" data-jump="1" type="button"><span class="step-num">01</span><span class="step-name">Concrete</span></button>
+          <span class="step-line" aria-hidden="true"></span>
+          <button class="pipeline-step" data-jump="2" type="button"><span class="step-num">02</span><span class="step-name">Choker &amp; Fabric</span></button>
+          <span class="step-line" aria-hidden="true"></span>
+          <button class="pipeline-step" data-jump="3" type="button"><span class="step-num">03</span><span class="step-name">Sand Bed</span></button>
+          <span class="step-line" aria-hidden="true"></span>
+          <button class="pipeline-step" data-jump="4" type="button"><span class="step-num">04</span><span class="step-name">Charcoal</span></button>
+          <span class="step-line" aria-hidden="true"></span>
+          <button class="pipeline-step" data-jump="5" type="button"><span class="step-num">05</span><span class="step-name">Pumice</span></button>
+          <span class="step-line" aria-hidden="true"></span>
+          <button class="pipeline-step" data-jump="6" type="button"><span class="step-num">06</span><span class="step-name">Underdrain</span></button>
+          <span class="step-line" aria-hidden="true"></span>
+          <button class="pipeline-step" data-jump="7" type="button"><span class="step-num">07</span><span class="step-name">Oil Separator</span></button>
+          <span class="step-line" aria-hidden="true"></span>
+          <button class="pipeline-step" data-jump="8" type="button"><span class="step-num">08</span><span class="step-name">Flow Test</span></button>
+        </div>
       </div>
     </div>
   </section>
@@ -127,18 +137,18 @@
           <p class="card-summary">
             Commercial vehicle wash bays across Addis Ababa consume 100&ndash;200 liters of potable water per vehicle, discharging soapy effluent containing motor oil, road grit, and heavy metals directly onto bare soil or into city drains. This bench-scale prototype (500 &times; 300 mm) combines civil pervious concrete, chemical adsorption, and electromechanical separation to clean wash water entirely by gravity for on-site vehicle rewashing.
           </p>
-          <div class="spec-highlights">
-            <div class="spec-pill">
-              <span class="spec-pill-label">Test Footprint:</span>
-              <span class="spec-pill-val">500 &times; 300 mm</span>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Test Footprint</span>
+              <span class="spec-value">500 &times; 300 mm</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Flow Mode:</span>
-              <span class="spec-pill-val">Passive Gravity (0 W Pumping)</span>
+            <div class="spec-row">
+              <span class="spec-label">Flow Mode</span>
+              <span class="spec-value">Passive Gravity (0 W Pumping)</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Target Standard:</span>
-              <span class="spec-pill-val">EEPA &amp; WHO Non-Potable (&lt;20 NTU)</span>
+            <div class="spec-row">
+              <span class="spec-label">Target Standard</span>
+              <span class="spec-value">EEPA &amp; WHO Non-Potable (&lt;20 NTU)</span>
             </div>
           </div>
           <div class="scroll-prompt">
@@ -183,18 +193,18 @@
               </div>
             </div>
           </div>
-          <div class="spec-highlights">
-            <div class="spec-pill">
-              <span class="spec-pill-label">Thickness:</span>
-              <span class="spec-pill-val">80 mm Depth</span>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Layer Thickness</span>
+              <span class="spec-value">80 mm Depth</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Compressive Strength:</span>
-              <span class="spec-pill-val">14.8 MPa (ASTM C39)</span>
+            <div class="spec-row">
+              <span class="spec-label">Compressive Strength</span>
+              <span class="spec-value">14.8 MPa (ASTM C39)</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Target Void Ratio:</span>
-              <span class="spec-pill-val">20.4% Bulk Volume</span>
+            <div class="spec-row">
+              <span class="spec-label">Target Void Ratio</span>
+              <span class="spec-value">20.4% Bulk Volume</span>
             </div>
           </div>
         </div>
@@ -235,18 +245,18 @@
               </div>
             </div>
           </div>
-          <div class="spec-highlights">
-            <div class="spec-pill">
-              <span class="spec-pill-label">Bed Thickness:</span>
-              <span class="spec-pill-val">50 mm Bedding</span>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Bed Thickness</span>
+              <span class="spec-value">50 mm Bedding</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Fabric Weight:</span>
-              <span class="spec-pill-val">200 g/m&sup2; Non-Woven PP</span>
+            <div class="spec-row">
+              <span class="spec-label">Fabric Weight</span>
+              <span class="spec-value">200 g/m&sup2; Non-Woven PP</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Puncture Strength:</span>
-              <span class="spec-pill-val">&gt;1.8 kN (ASTM D4833)</span>
+            <div class="spec-row">
+              <span class="spec-label">Puncture Strength</span>
+              <span class="spec-value">&gt;1.8 kN (ASTM D4833)</span>
             </div>
           </div>
         </div>
@@ -287,18 +297,18 @@
               </div>
             </div>
           </div>
-          <div class="spec-highlights">
-            <div class="spec-pill">
-              <span class="spec-pill-label">Layer Depth:</span>
-              <span class="spec-pill-val">60 mm Layer</span>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Layer Depth</span>
+              <span class="spec-value">60 mm Layer</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Grain Size:</span>
-              <span class="spec-pill-val">0.5&ndash;2.0 mm Sieve</span>
+            <div class="spec-row">
+              <span class="spec-label">Grain Size</span>
+              <span class="spec-value">0.5&ndash;2.0 mm Sieve</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">TSS Retention:</span>
-              <span class="spec-pill-val">&gt;65% Single Pass</span>
+            <div class="spec-row">
+              <span class="spec-label">TSS Retention</span>
+              <span class="spec-value">&gt;65% Single Pass</span>
             </div>
           </div>
         </div>
@@ -339,18 +349,18 @@
               </div>
             </div>
           </div>
-          <div class="spec-highlights">
-            <div class="spec-pill">
-              <span class="spec-pill-label">Layer Depth:</span>
-              <span class="spec-pill-val">60 mm Bed</span>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Layer Depth</span>
+              <span class="spec-value">60 mm Bed</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Specific Surface Area:</span>
-              <span class="spec-pill-val">400&ndash;800 m&sup2;/g</span>
+            <div class="spec-row">
+              <span class="spec-label">Specific Surface Area</span>
+              <span class="spec-value">400&ndash;800 m&sup2;/g</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Oil Adsorption:</span>
-              <span class="spec-pill-val">~14.2 mg/g Media</span>
+            <div class="spec-row">
+              <span class="spec-label">Oil Adsorption</span>
+              <span class="spec-value">~14.2 mg/g Media</span>
             </div>
           </div>
         </div>
@@ -391,18 +401,18 @@
               </div>
             </div>
           </div>
-          <div class="spec-highlights">
-            <div class="spec-pill">
-              <span class="spec-pill-label">Layer Depth:</span>
-              <span class="spec-pill-val">80 mm Sub-base</span>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Layer Depth</span>
+              <span class="spec-value">80 mm Sub-base</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Total Porosity:</span>
-              <span class="spec-pill-val">60%&ndash;75% Bulk Volume</span>
+            <div class="spec-row">
+              <span class="spec-label">Total Porosity</span>
+              <span class="spec-value">60%&ndash;75% Bulk Volume</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Cation Exchange (CEC):</span>
-              <span class="spec-pill-val">25&ndash;40 meq/100g</span>
+            <div class="spec-row">
+              <span class="spec-label">Cation Exchange (CEC)</span>
+              <span class="spec-value">25&ndash;40 meq/100g</span>
             </div>
           </div>
         </div>
@@ -443,18 +453,18 @@
               </div>
             </div>
           </div>
-          <div class="spec-highlights">
-            <div class="spec-pill">
-              <span class="spec-pill-label">Pipe Diameter:</span>
-              <span class="spec-pill-val">50 mm (2 in) Schedule 40</span>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Pipe Diameter</span>
+              <span class="spec-value">50 mm (2 in) Schedule 40</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Gravel Depth:</span>
-              <span class="spec-pill-val">70 mm Envelope</span>
+            <div class="spec-row">
+              <span class="spec-label">Gravel Depth</span>
+              <span class="spec-value">70 mm Envelope</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Conveyance Slope:</span>
-              <span class="spec-pill-val">1.5% Longitudinal Fall</span>
+            <div class="spec-row">
+              <span class="spec-label">Conveyance Slope</span>
+              <span class="spec-value">1.5% Longitudinal Fall</span>
             </div>
           </div>
         </div>
@@ -495,18 +505,18 @@
               </div>
             </div>
           </div>
-          <div class="spec-highlights">
-            <div class="spec-pill">
-              <span class="spec-pill-label">Effluent Oil:</span>
-              <span class="spec-pill-val">&lt;5 mg/L Target</span>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Effluent Oil</span>
+              <span class="spec-value">&lt;5 mg/L Target</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Turbidity:</span>
-              <span class="spec-pill-val">&lt;20 NTU Reuse</span>
+            <div class="spec-row">
+              <span class="spec-label">Turbidity</span>
+              <span class="spec-value">&lt;20 NTU Reuse</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Telemetry:</span>
-              <span class="spec-pill-val">ESP32 &middot; WiFi &middot; Ultrasonic &middot; Turbidity</span>
+            <div class="spec-row">
+              <span class="spec-label">Telemetry</span>
+              <span class="spec-value">ESP32 &middot; Ultrasonic &middot; Turbidity</span>
             </div>
           </div>
         </div>
@@ -524,18 +534,18 @@
           <p class="card-summary">
             Reassembled in its operating configuration, simulated wash influent carrying 186&ndash;561 mg/L TSS, 12&ndash;325 mg/L oil, and 187&ndash;483 NTU turbidity percolates continuously through the complete prototype. The combined sequence—surface straining, depth sand filtration, carbon adsorption, pumice ion exchange, and gravity skimming—produces clarified water suitable for reuse, saving an estimated 1,000&ndash;2,000 liters of potable municipal water per commercial bay daily.
           </p>
-          <div class="spec-highlights">
-            <div class="spec-pill">
-              <span class="spec-pill-label">Turbidity Reduction:</span>
-              <span class="spec-pill-val">187&ndash;483 &rarr; &lt;20 NTU</span>
+          <div class="spec-list">
+            <div class="spec-row">
+              <span class="spec-label">Turbidity Reduction</span>
+              <span class="spec-value">187&ndash;483 &rarr; &lt;20 NTU</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">Water Savings:</span>
-              <span class="spec-pill-val">1,000&ndash;2,000 L/day per bay</span>
+            <div class="spec-row">
+              <span class="spec-label">Water Savings</span>
+              <span class="spec-value">1,000&ndash;2,000 L/day per bay</span>
             </div>
-            <div class="spec-pill">
-              <span class="spec-pill-label">UN SDG Alignment:</span>
-              <span class="spec-pill-val">SDG 6 (Clean Water), 9 &amp; 11</span>
+            <div class="spec-row">
+              <span class="spec-label">UN SDG Alignment</span>
+              <span class="spec-value">SDG 6 (Clean Water), 9 &amp; 11</span>
             </div>
           </div>
           <div class="narrative-actions">
@@ -550,14 +560,24 @@
     <!-- Sticky 3D Canvas Viewport Column -->
     <aside class="canvas-viewport" aria-label="3D Interactive Cross-Section">
       <div id="canvas-container" aria-label="AquaPave 3D Interactive Model">
-        <div class="viewport-hud">
-          <div class="stage-badge">
+        <div class="viewport-hud-dock">
+          <div class="hud-stage-segment">
             <span class="badge-dot" aria-hidden="true"></span>
-            <span>STAGE <strong id="stage-indicator">00</strong> / 08</span>
+            <span class="hud-stage-label">STAGE</span>
+            <strong id="stage-indicator">00</strong>
+            <span class="hud-slash">/</span>
+            <span class="hud-total">08</span>
           </div>
-          <div class="viewport-controls">
-            <button class="btn-ctrl" id="toggle-orbit" type="button" aria-pressed="false" title="Toggle free mouse rotation">360&deg; Orbit</button>
-            <button class="btn-ctrl" id="toggle-flow" type="button" aria-pressed="false" title="Simulate water infiltration">Simulate Flow</button>
+          <div class="hud-controls-segment">
+            <button class="btn-hud" id="toggle-orbit" type="button" aria-pressed="false" title="Toggle free mouse rotation">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              <span>360&deg; Orbit</span>
+            </button>
+            <span class="hud-vsep" aria-hidden="true"></span>
+            <button class="btn-hud" id="toggle-flow" type="button" aria-pressed="false" title="Simulate water infiltration">
+              <span class="ctrl-indicator" aria-hidden="true"></span>
+              <span>Simulate Flow</span>
+            </button>
           </div>
         </div>
         <div class="viewport-status" id="viewport-status" role="status" aria-live="polite">

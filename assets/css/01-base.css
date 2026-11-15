@@ -150,7 +150,7 @@ table {
   width: 100%;
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 24px;
+  padding-inline: clamp(1.5rem, 5vw, 4rem);
 }
 
 .site-header {
@@ -241,9 +241,11 @@ table {
 }
 
 .nav a[aria-current="page"] {
-  background: var(--teal-soft);
+  background: transparent;
   color: var(--navy);
+  font-weight: 700;
   box-shadow: inset 0 -2px 0 var(--teal);
+  border-radius: 0;
 }
 
 .nav-toggle {

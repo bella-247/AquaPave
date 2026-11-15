@@ -114,6 +114,11 @@ export function createScrollytellingController({
       }
     });
 
+    // Highlight active pipeline track step
+    document.querySelectorAll('.pipeline-step').forEach((btn, idx) => {
+      btn.classList.toggle('is-active', idx === index);
+    });
+
     if (index === 0) {
       // SECTION 0: Assembled Prototype View
       pinProjector.hideAll();
